@@ -2,6 +2,7 @@ import Title from "@/components/Title";
 import { GetServerSideProps } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { queryTestClientSide, queryTestServerSide } from "../api/test";
+import { isProd } from "@/utils/common";
 import styles from "./Test.module.scss";
 
 export default function Test() {
@@ -27,7 +28,10 @@ export default function Test() {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["test"], queryTestServerSide);
+  await queryClient.prefetchQuery(
+    ["test"],
+    isProd ? queryTestClientSide : queryTestServerSide
+  );
   return {
     props: {
       dehydratedProps: dehydrate(queryClient),
