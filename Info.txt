@@ -1,0 +1,14 @@
+nextjs에서는 기본 정적페이지로 구성되므로
+화면에서 js가 동작하는 경우에는(useEffect, useState, onClick...)
+파일 상단에 "use client";를 입력해야한다.
+
+CRA와 달리 nextjs에서 프록시 설정은
+next.config.js파일의 nextConfig 안에 아래 내용을 입력해야한다.
+async rewrites() {
+    return [
+      {
+        source: "/api",
+        destination: "http://localhost:8080/api",
+      },
+    ];
+  },
