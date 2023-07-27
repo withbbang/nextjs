@@ -1,11 +1,11 @@
 import Title from "@/components/Title";
 import { GetServerSideProps } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
-import { queryTest } from "../api/test";
+import { queryTestClientSide, queryTestServerSide } from "../api/test";
 import styles from "./Test.module.scss";
 
 export default function Test() {
-  const { data, isError, isLoading } = useQuery(["test"], queryTest, {
+  const { data, isError, isLoading } = useQuery(["test"], queryTestClientSide, {
     refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
     refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
     // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
@@ -27,7 +27,7 @@ export default function Test() {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["test"], queryTest);
+  await queryClient.prefetchQuery(["test"], queryTestServerSide);
   return {
     props: {
       dehydratedProps: dehydrate(queryClient),
