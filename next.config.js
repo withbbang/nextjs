@@ -5,12 +5,10 @@ const nextConfig = {
   reactStrictMode: false,
   async rewrites() {
     return [
-      isProd
-        ? {}
-        : {
-            source: "/api/:path*",
-            destination: "http://localhost:5000/:path*",
-          },
+      !isProd && {
+        source: "/api/:path*",
+        destination: "http://localhost:5000/:path*",
+      },
     ];
   },
 };
