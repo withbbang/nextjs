@@ -6,25 +6,12 @@ import Title from "@/components/Title";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  function handleClick() {
-    fetch("/api", {
-      method: "GET",
-      // mode: "no-cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((result) => console.log(result));
-  }
-
   return (
     <>
       <Title />
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.description}>
-          <p onClick={handleClick}>
+          <p>
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
           </p>

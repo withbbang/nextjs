@@ -8,7 +8,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProps } from "next/app";
 import { useState } from "react";
 
-function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
@@ -22,5 +22,3 @@ function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
-
-export default App;

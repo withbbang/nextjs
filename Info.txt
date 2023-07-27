@@ -47,3 +47,14 @@ getInitialProps를 사용해야 한다.
 getInitialProps: getInitialProps가 없으면, 페이지를 정적 HTML로 사전 렌더링을 해서 정적 최적화를 한다. 하지만 getInitialProps를 사용하게 되면, 최적화 과정이 일어나지 않는다. 그래서 전역적으로 SSR 데이터 패칭이 필요한 경우에만 사용하는 것을 추천한다.
 getStaticProps: 빌드 시 딱 한 번만 호출, 그래서 페이지별 fetch 할 필요가 없는 경우 렌더링에 유리하다.
 getServerSideProps: 요청이 들어올 때마다 호출, 진입할 때마다 다시 호출되기 때문에 빌드 이후에도 자주 바뀌게 될 동적 데이터가 들어갈 경우에 사용한다.
+
+
+
+
+
+
+react-query
+_app.tsx에서의 설정은 보일러 플레이트
+각 컴포넌트의 getServerSideProps 내에서 queryClient.prefetchQuery 서버사이드로 데이터 프리페칭 후 데이터를 캐싱한다.
+컴포넌트 렌더링 이후 클라이언트 사이드 useQuery로 데이터 리페칭을 한다. 리페칭이 불필요 하다고 생각되면 refetchOnMount: false 혹은 staleTime: Infinity의 설정값을 넣을 수 있다.
+refetchOnWindowFocus: false 설정값은 윈도우 클릭시 마다 데이터 리페칭 유무이다.

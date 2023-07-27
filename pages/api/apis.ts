@@ -7,14 +7,14 @@ function getAPI(url: string): Promise<any> {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "GET",
-      // mode: "no-cors",
+      //   mode: "no-cors",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
     })
       .then((response) => {
-        if (response.status < 300) {
+        if (response.status < 305) {
           return response.json();
         } else {
           reject(new Error("오류발생"));
@@ -22,11 +22,7 @@ function getAPI(url: string): Promise<any> {
       })
       .then((result) => {
         console.debug("result: ", result);
-        if (result.code !== "000000") {
-          reject(result);
-        } else {
-          resolve(result);
-        }
+        resolve(result);
       })
       .catch((error) => {
         console.error(error);
@@ -46,7 +42,7 @@ function postAPI(url: string, { payload }: any = {}): Promise<any> {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "POST",
-      // mode: "no-cors",
+      //   mode: "no-cors",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -54,7 +50,7 @@ function postAPI(url: string, { payload }: any = {}): Promise<any> {
       body: JSON.stringify(payload),
     })
       .then((response) => {
-        if (response.status < 300) {
+        if (response.status < 305) {
           return response.json();
         } else {
           reject(new Error("오류발생"));
@@ -62,11 +58,7 @@ function postAPI(url: string, { payload }: any = {}): Promise<any> {
       })
       .then((result) => {
         console.debug("result: ", result);
-        if (result.code !== "000000") {
-          reject(result);
-        } else {
-          resolve(result);
-        }
+        resolve(result);
       })
       .catch((error) => {
         console.error(error);
@@ -86,7 +78,7 @@ function putAPI(url: string, { payload }: any = {}): Promise<any> {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "PUT",
-      // mode: "no-cors",
+      //   mode: "no-cors",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -94,7 +86,7 @@ function putAPI(url: string, { payload }: any = {}): Promise<any> {
       body: JSON.stringify(payload),
     })
       .then((response) => {
-        if (response.status < 300) {
+        if (response.status < 305) {
           return response.json();
         } else {
           reject(new Error("오류발생"));
@@ -102,11 +94,7 @@ function putAPI(url: string, { payload }: any = {}): Promise<any> {
       })
       .then((result) => {
         console.debug("result: ", result);
-        if (result.code !== "000000") {
-          reject(result);
-        } else {
-          resolve(result);
-        }
+        resolve(result);
       })
       .catch((error) => {
         console.error(error);
@@ -126,7 +114,7 @@ function deleteAPI(url: string, { payload }: any = {}): Promise<any> {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "DELETE",
-      // mode: "no-cors",
+      //   mode: "no-cors",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -134,7 +122,7 @@ function deleteAPI(url: string, { payload }: any = {}): Promise<any> {
       body: JSON.stringify(payload),
     })
       .then((response) => {
-        if (response.status < 300) {
+        if (response.status < 305) {
           return response.json();
         } else {
           reject(new Error("오류발생"));
@@ -142,11 +130,7 @@ function deleteAPI(url: string, { payload }: any = {}): Promise<any> {
       })
       .then((result) => {
         console.debug("result: ", result);
-        if (result.code !== "000000") {
-          reject(result);
-        } else {
-          resolve(result);
-        }
+        resolve(result);
       })
       .catch((error) => {
         console.error(error);
@@ -165,7 +149,7 @@ function deleteAPI(url: string, { payload }: any = {}): Promise<any> {
 //   console.debug("parameters: ", payload);
 //   fetch(url, {
 //     method: "POST",
-//     // mode: "no-cors",
+//     mode: "no-cors",
 //     redirect: "follow",
 //     headers: {
 //       Accept: "application/json",
