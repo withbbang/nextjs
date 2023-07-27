@@ -5,5 +5,5 @@ export async function queryTestClientSide() {
 }
 
 export async function queryTestServerSide() {
-  return await getAPI("http://localhost:5000/example");
+  return await getAPI("http://localhost:4000/api/example");
 }
