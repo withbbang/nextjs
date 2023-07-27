@@ -1,8 +1,8 @@
-import Title from "@/components/Title";
 import { GetServerSideProps } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
-import { queryTestClientSide, queryTestServerSide } from "../api/test";
+import { queryTestClientSide, queryTestServerSide } from "@/pages/api/test";
 import { isProd } from "@/utils/common";
+import Title from "@/components/Title";
 import styles from "./Test.module.scss";
 
 export default function Test() {
@@ -15,7 +15,7 @@ export default function Test() {
   return (
     <>
       {isLoading ? (
-        data
+        "Loading..."
       ) : (
         <>
           <Title title={"Test"} />
