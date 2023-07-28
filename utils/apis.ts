@@ -37,7 +37,7 @@ function getAPI(url: string): Promise<any> {
  * @param {any} payload 요청 DATA
  * @returns {Promise<any>}
  */
-function postAPI(url: string, { payload }: any = {}): Promise<any> {
+function postAPI(url: string, payload: any): Promise<any> {
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -73,7 +73,7 @@ function postAPI(url: string, { payload }: any = {}): Promise<any> {
  * @param {any} payload 요청 DATA
  * @returns {Promise<any>}
  */
-function putAPI(url: string, { payload }: any = {}): Promise<any> {
+function putAPI(url: string, payload: any): Promise<any> {
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -109,7 +109,7 @@ function putAPI(url: string, { payload }: any = {}): Promise<any> {
  * @param {any} payload 요청 DATA
  * @returns {Promise<any>}
  */
-function deleteAPI(url: string, { payload }: any = {}): Promise<any> {
+function deleteAPI(url: string, payload: any): Promise<any> {
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {

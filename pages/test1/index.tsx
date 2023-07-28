@@ -5,7 +5,7 @@ import { isProd } from "@/utils/common";
 import Title from "@/components/Title";
 import styles from "./Test1.module.scss";
 
-export default function Test() {
+export default function Test1() {
   const { data, isError, isLoading } = useQuery(
     ["test1"],
     queryTest1ClientSide,

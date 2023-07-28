@@ -65,3 +65,5 @@ html렌더링 이후 한번더 useQuery로 데이터를 페칭하여 서버의 �
 
 /pages/test2 컴포넌트는 CSR 용으로 만든 컴포넌트
 CRA처럼 렌더링 이후 데이터를 가져오는 형태이다.
+
+/pages/test3 컴포넌트는 mutation 테스트용 컴포넌트

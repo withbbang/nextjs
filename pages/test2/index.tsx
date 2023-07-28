@@ -3,7 +3,7 @@ import { queryTest2ClientSide } from "@/pages/api/test2";
 import Title from "@/components/Title";
 import styles from "./Test2.module.scss";
 
-export default function Test() {
+export default function Test2() {
   const { data, isError, isLoading } = useQuery(
     ["test2"],
     queryTest2ClientSide,
