@@ -14,7 +14,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Loader />
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <Component {...pageProps} />

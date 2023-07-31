@@ -6,11 +6,7 @@ function Loader(): JSX.Element {
   const { loading } = useCommonStore();
 
   return (
-    <div
-      className={
-        loading ? styles.background : [styles.background, styles.none].join(" ")
-      }
-    >
+    <div className={styles.background}>
       <span className={styles.loader}></span>
     </div>
   );
