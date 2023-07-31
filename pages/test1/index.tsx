@@ -1,11 +1,14 @@
 import { GetServerSideProps } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
-import { queryTest1ClientSide, queryTest1ServerSide } from "@/api/test1";
-import { isProd } from "@/utils/common";
 import Title from "@/components/Title";
 import styles from "./Test1.module.scss";
+import { queryTest1ClientSide, queryTest1ServerSide } from "@/api/test1";
+import { isProd } from "@/utils/common";
+import { useCommonStore } from "@/stores/common";
+import { useEffect } from "react";
 
 export default function Test1() {
+  const { setLoading } = useCommonStore();
   const { data, isError, isLoading } = useQuery(
     ["test1"],
     queryTest1ClientSide,
@@ -16,16 +19,14 @@ export default function Test1() {
     }
   );
 
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
+
   return (
     <>
-      {isLoading ? (
-        "Loading..."
-      ) : (
-        <>
-          <Title title={"Test1"} />
-          <h1 className={styles.h1}>It is Test1 Page!</h1>
-        </>
-      )}
+      <Title title={"Test1"} />
+      <h1 className={styles.h1}>It is Test1 Page!</h1>
     </>
   );
 }

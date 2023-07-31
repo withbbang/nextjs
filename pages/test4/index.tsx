@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useCommonStore } from "@/stores/common";
 
 export default function Test4() {
-  const { error, loading, setError, setLoading } = useCommonStore();
+  const { setLoading } = useCommonStore();
   const { data, isError, isLoading } = useQuery(
     ["test4"],
     queryTest4ClientSide,
@@ -25,14 +25,8 @@ export default function Test4() {
 
   return (
     <>
-      {loading ? (
-        "Loading..."
-      ) : (
-        <>
-          <Title title={"Test4"} />
-          <h1 className={styles.h1}>It is Test4 Page!</h1>
-        </>
-      )}
+      <Title title={"Test4"} />
+      <h1 className={styles.h1}>It is Test4 Page!</h1>
     </>
   );
 }
