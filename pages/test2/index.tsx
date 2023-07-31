@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { queryTest2ClientSide } from "@/pages/api/test2";
+import { queryTest2ClientSide } from "@/api/test2";
 import Title from "@/components/Title";
 import styles from "./Test2.module.scss";
 

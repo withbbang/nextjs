@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { queryTest3ClientSide, mutationTest } from "@/pages/api/test3";
+import { queryTest3ClientSide, mutationTest } from "@/api/test3";
 import Title from "@/components/Title";
 import styles from "./Test3.module.scss";
 
