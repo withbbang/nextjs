@@ -2,12 +2,15 @@ import Title from "@/components/Title";
 import styles from "./Test1.module.scss";
 import { GetServerSideProps } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { queryTest1ClientSide, queryTest1ServerSide } from "@/api/test1";
+import { useTranslation } from "next-i18next";
 import { isProd } from "@/utils/common";
 import { useCommonStore } from "@/stores/common";
 import { useEffect } from "react";
 
 export default function Test1() {
+  const { t } = useTranslation("translate");
   const { setLoading } = useCommonStore();
   const { data, isError, isLoading } = useQuery(
     ["test1"],
@@ -26,20 +29,22 @@ export default function Test1() {
   return (
     <>
       <Title title={"Test1"} />
-      <h1 className={styles.h1}>It is Test1 Page!</h1>
+      <h1 className={styles.h1}>{t("h1")}</h1>
     </>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
     ["test1"],
     isProd ? queryTest1ClientSide : queryTest1ServerSide
   );
+
   return {
     props: {
       dehydratedProps: dehydrate(queryClient),
+      ...(await serverSideTranslations(context.locale ?? "ko", ["translate"])),
     },
   };
 };
