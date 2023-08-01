@@ -1,20 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig =
-  process.env.NODE_ENV === "production"
-    ? {
-        compiler: {
-          removeConsole: true,
-        },
-      }
-    : {
-        async rewrites() {
-          return [
-            {
-              source: "/api/:path*",
-              destination: "http://localhost:4000/api/:path*",
-            },
-          ];
-        },
-      };
+
+const prod = require("./configs/prod.config");
+const dev = require("./configs/dev.config");
+
+const nextConfig = {
+  i18n: {
+    locales: ["en-US", "en", "ko"],
+    defaultLocale: "en-US",
+  },
+  ...(process.env.NODE_ENV === "production" ? prod : dev),
+};
 
 module.exports = nextConfig;
