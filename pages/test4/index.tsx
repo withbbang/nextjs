@@ -7,7 +7,7 @@ import styles from "./Test4.module.scss";
 import { useEffect } from "react";
 import { useCommonStore } from "@/stores/common";
 
-export default function Test4() {
+export default function Test4(): React.JSX.Element {
   const { setLoading } = useCommonStore();
   const { data, isError, isLoading, isSuccess } = useQuery(
     ["test4"],
@@ -32,7 +32,7 @@ export default function Test4() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export async function getServerSideProps(): GetServerSideProps  {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
     ["test4"],
