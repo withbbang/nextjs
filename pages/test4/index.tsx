@@ -7,9 +7,9 @@ import styles from "./Test4.module.scss";
 import { useEffect } from "react";
 import { useCommonStore } from "@/stores/common";
 
-export default function Test4(props: any) {
+export default function Test4() {
   const { setLoading } = useCommonStore();
-  const { data, isError, isLoading, isSuccess } = useQuery(
+  const { data, isError, isLoading } = useQuery(
     ["test4"],
     queryTest4ClientSide
   );
