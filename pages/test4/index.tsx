@@ -7,22 +7,23 @@ import styles from "./Test4.module.scss";
 import { useEffect } from "react";
 import { useCommonStore } from "@/stores/common";
 
-export default function Test4() {
+export default function Test4(props: any) {
   const { setLoading } = useCommonStore();
   const { data, isError, isLoading, isSuccess } = useQuery(
     ["test4"],
-    queryTest4ClientSide
+    queryTest4ClientSide,
+    { staleTime: 10 * 1000 }
   );
 
   useEffect(() => {
     setLoading(isLoading);
-  }, [isLoading, setLoading]);
+  }, [isLoading]);
 
   return (
     <>
       <Title title={"Test4"} />
       <h1 className={styles.h1}>It is Test4 Page!</h1>
-      <h2>{isSuccess && data.key}</h2>
+      <h2>{data.key}</h2>
     </>
   );
 }
