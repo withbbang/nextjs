@@ -27,7 +27,7 @@ export default function Test4() {
     <>
       <Title title={"Test4"} />
       <h1 className={styles.h1}>It is Test4 Page!</h1>
-      <h2>{isSuccess && data.key}</h2>
+      <h2>{isSuccess && data?.key}</h2>
     </>
   );
 }
