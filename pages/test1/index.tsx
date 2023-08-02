@@ -24,7 +24,7 @@ export default function Test1() {
 
   useEffect(() => {
     setLoading(isLoading);
-  }, [isLoading]);
+  }, [isLoading, setLoading]);
 
   return (
     <>

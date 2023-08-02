@@ -24,7 +24,7 @@ export default function Test3() {
 
   useEffect(() => {
     setLoading(mutation.isLoading || query.isLoading);
-  }, [query.isLoading, mutation.isLoading]);
+  }, [query.isLoading, mutation.isLoading, setLoading]);
 
   const handleClick = () => {
     mutation.mutate({ key: "value" });
