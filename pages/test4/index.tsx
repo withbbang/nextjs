@@ -34,7 +34,7 @@ export default function Test4() {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
-  await queryClient.fetchQuery(
+  await queryClient.prefetchQuery(
     ["test4"],
     isProd ? queryTest4ClientSide : queryTest4ServerSide
   );
