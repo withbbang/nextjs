@@ -14,12 +14,12 @@ export default function Test1() {
   const { setLoading } = useCommonStore();
   const { data, isError, isLoading } = useQuery(
     ["test1"],
-    queryTest1ClientSide,
-    {
-      refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
-      refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
-      // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
-    }
+    queryTest1ClientSide
+    // {
+    //   refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
+    //   refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
+    //   staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
+    // }
   );
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      dehydratedProps: dehydrate(queryClient),
+      dehydratedState: dehydrate(queryClient),
       ...(await serverSideTranslations(context.locale ?? "ko", ["translate"])),
     },
   };
