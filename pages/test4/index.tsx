@@ -7,17 +7,21 @@ import styles from "./Test4.module.scss";
 import { useEffect } from "react";
 import { useCommonStore } from "@/stores/common";
 
-export default function Test4(props: any) {
+export default function Test4() {
   const { setLoading } = useCommonStore();
   const { data, isError, isLoading, isSuccess } = useQuery(
     ["test4"],
     queryTest4ClientSide,
-    { staleTime: 10 * 1000 }
+    {
+      refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
+      refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
+      // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
+    }
   );
 
   useEffect(() => {
     setLoading(isLoading);
-  }, [isLoading]);
+  }, [isLoading, setLoading]);
 
   return (
     <>
