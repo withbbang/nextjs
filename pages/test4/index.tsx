@@ -1,7 +1,5 @@
-import { GetServerSideProps } from "next";
 import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { queryTest4ClientSide, queryTest4ServerSide } from "@/api/test4";
-import { isProd } from "@/utils/common";
 import Title from "@/components/Title";
 import styles from "./Test4.module.scss";
 import { useEffect } from "react";

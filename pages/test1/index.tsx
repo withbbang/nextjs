@@ -36,10 +36,7 @@ export default function Test1() {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    ["test1"],
-    isProd ? queryTest1ClientSide : queryTest1ServerSide
-  );
+  await queryClient.prefetchQuery(["test1"], queryTest1ServerSide);
 
   return {
     props: {
