@@ -30,10 +30,7 @@ export default function Test4() {
 
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    ["test4"],
-    isProd ? queryTest4ClientSide : queryTest4ServerSide
-  );
+  await queryClient.prefetchQuery(["test4"], queryTest4ServerSide);
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
