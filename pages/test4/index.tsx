@@ -10,7 +10,7 @@ export default function Test4() {
   const { data, isError, isLoading, isSuccess } = useQuery({
     queryKey: ["test4"],
     queryFn: queryTest4ClientSide,
-    staleTime: 10 * 1000,
+    // staleTime: 10 * 1000,
   });
 
   useEffect(() => {
