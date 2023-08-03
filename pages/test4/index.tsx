@@ -7,11 +7,14 @@ import { useCommonStore } from "@/stores/common";
 
 export default function Test4() {
   const { setLoading } = useCommonStore();
-  const { data, isError, isLoading, isSuccess } = useQuery({
-    queryKey: ["test4"],
-    queryFn: queryTest4ClientSide,
-    // staleTime: 10 * 1000,
-  });
+  const { data, isError, isLoading, isSuccess } = useQuery(
+    ["test4"],
+    queryTest4ClientSide,
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    }
+  );
 
   useEffect(() => {
     setLoading(isLoading);
