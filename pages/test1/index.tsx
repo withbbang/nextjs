@@ -5,7 +5,6 @@ import { QueryClient, dehydrate, useQuery } from "@tanstack/react-query";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { queryTest1ClientSide, queryTest1ServerSide } from "@/api/test1";
 import { useTranslation } from "next-i18next";
-import { isProd } from "@/utils/common";
 import { useCommonStore } from "@/stores/common";
 import { useEffect } from "react";
 
