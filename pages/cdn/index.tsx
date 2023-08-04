@@ -10,7 +10,7 @@ export default function CDN() {
     const script = document.createElement("script");
     script.setAttribute(
       "src",
-      "https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=u1frrdq2zy"
+      "https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=clientId"
     );
     document.head.appendChild(script);
 
