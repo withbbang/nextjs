@@ -1,26 +1,20 @@
+import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import Title from "@/components/Title";
-import { useEffect } from "react";
 import styles from "./CDN.module.scss";
+
+const Map = dynamic(() => import("../../components/Map"), { ssr: false });
 
 export default function CDN() {
   useEffect(() => {
-    const cdnUrl =
-      "https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=clientId";
     const script = document.createElement("script");
-    script.setAttribute("strategy", "beforeInteractive");
-    script.setAttribute("src", cdnUrl);
-    script.setAttribute("async", "true");
-    document.body.appendChild(script);
-
-    const map = new naver.maps.Map("map", {
-      center: new naver.maps.LatLng(37.3595704, 127.105399),
-      mapTypes: new naver.maps.MapTypeRegistry({
-        normal: naver.maps.NaverStyleMapTypeOptions.getVectorMap(),
-      }),
-    });
+    script.setAttribute(
+      "src",
+      "https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=u1frrdq2zy"
+    );
+    document.head.appendChild(script);
 
     return () => {
-      // Cleanup when the component is unmounted
       document.body.removeChild(script);
     };
   }, []);
@@ -28,7 +22,7 @@ export default function CDN() {
   return (
     <>
       <Title title={"CDN"} />
-      <div className={styles.map} id="map"></div>
+      <Map />
     </>
   );
 }
