@@ -20,6 +20,8 @@ export default function Test4() {
     setLoading(isLoading);
   }, [isLoading, setLoading]);
 
+  console.log(data);
+
   return (
     <>
       <Title title={"Test4"} />
