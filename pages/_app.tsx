@@ -11,7 +11,16 @@ import { appWithTranslation } from "next-i18next";
 import Loader from "@/components/Loader";
 
 function App({ Component, pageProps }: AppProps) {
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: 0, // 데이터 요청 실패시 재요청 횟수(전역적으로 설정, 지역적으로 따로 설정 가능)
+          },
+        },
+      })
+  );
 
   return (
     <>
