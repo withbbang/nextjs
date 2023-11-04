@@ -7,7 +7,7 @@ const { i18n } = require("./next-i18next.config");
 const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
-    prependData: `@import "styles/_variables.scss"; @import "styles/_mixins.scss";`, // prependData 옵션 추가
+    prependData: `@import "styles/_variables.scss";`, // prependData 옵션 추가
   },
   i18n,
   ...(process.env.NODE_ENV === "production" ? prod : dev),
