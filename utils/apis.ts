@@ -17,7 +17,7 @@ function getAPI(url: string): Promise<any> {
         if (response.status < 305) {
           return response.json();
         } else {
-          reject(new Error("오류발생"));
+          throw Error("오류 발생");
         }
       })
       .then((result) => {
@@ -53,7 +53,7 @@ function postAPI(url: string, payload: any): Promise<any> {
         if (response.status < 305) {
           return response.json();
         } else {
-          reject(new Error("오류발생"));
+          throw Error("오류 발생");
         }
       })
       .then((result) => {
@@ -89,7 +89,7 @@ function putAPI(url: string, payload: any): Promise<any> {
         if (response.status < 305) {
           return response.json();
         } else {
-          reject(new Error("오류발생"));
+          throw Error("오류 발생");
         }
       })
       .then((result) => {
@@ -125,7 +125,7 @@ function deleteAPI(url: string, payload: any): Promise<any> {
         if (response.status < 305) {
           return response.json();
         } else {
-          reject(new Error("오류발생"));
+          throw Error("오류 발생");
         }
       })
       .then((result) => {
