@@ -1,0 +1,11 @@
+1 비로그인 페이지(메인, 소개...)들은 getServerSideProps, prefetchQuery로
+  SSR하여 검색엔진에 노출 정도를 높인다.
+
+2 비로그인 페이지 중 검색엔진에 노출이 필요 없는 페이지(Q&A, 고객센터...)들은 useEffect로 CSR한다.
+
+3 인증이 필요한 페이지(로그인 후 사용 가능한 페이지, 결제 페이지...)들은
+  getServerSideProps에서 단순 fetch query로 데이터를 요청한다. 이후 인증 오류가 났을 경우
+    - getServerSideProps에서 return {notFound: true};
+        ex) https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props#notfound
+    - getServerSideProps에서 컴포넌트의 props로 에러 내용을 전달 후 처리한다.
+        ex) https://tesseractjh.tistory.com/269

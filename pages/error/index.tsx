@@ -23,15 +23,13 @@ export default function Test1() {
     setLoading(isLoading);
   }, [isLoading, setLoading]);
 
-  if (isError) {
-    router.push("/not-found");
-  } else {
-    return (
-      <>
-        <Title title={"Error1"} />
-      </>
-    );
-  }
+  if (isError) router.push("/not-found");
+
+  return (
+    <>
+      <Title title={"Error1"} />
+    </>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
