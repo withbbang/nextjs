@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 export default function Test1() {
   const { t } = useTranslation("translate");
-  const { setLoading } = useCommonStore();
+  const { handleSetIsLoading } = useCommonStore();
   const { data, isError, isLoading } = useQuery(
     ["test1"],
     queryTest1ClientSide,
@@ -22,8 +22,8 @@ export default function Test1() {
   );
 
   useEffect(() => {
-    setLoading(isLoading);
-  }, [isLoading, setLoading]);
+    handleSetIsLoading(isLoading);
+  }, [isLoading, handleSetIsLoading]);
 
   return (
     <>

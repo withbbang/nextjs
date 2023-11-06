@@ -1,14 +1,16 @@
 import React from "react";
-import styles from "./Loader.module.scss";
 import { useCommonStore } from "@/stores/common";
+import styles from "./Loader.module.scss";
 
 function Loader(): JSX.Element {
-  const { loading } = useCommonStore();
+  const { isLoading } = useCommonStore();
 
   return (
     <div
       className={
-        loading ? styles.background : [styles.background, styles.none].join(" ")
+        isLoading
+          ? styles.background
+          : [styles.background, styles.none].join(" ")
       }
     >
       <span className={styles.loader}></span>

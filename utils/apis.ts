@@ -14,11 +14,11 @@ function getAPI(url: string): Promise<any> {
       },
     })
       .then((response) => {
-        if (response.status < 305) {
+        if (response.status < 400) {
           return response.json();
-        } else {
-          throw Error("오류 발생");
         }
+
+        throw Error("Error Occured");
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -50,11 +50,11 @@ function postAPI(url: string, payload: any): Promise<any> {
       body: JSON.stringify(payload),
     })
       .then((response) => {
-        if (response.status < 305) {
+        if (response.status < 400) {
           return response.json();
-        } else {
-          throw Error("오류 발생");
         }
+
+        throw Error("Error Occured");
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -86,11 +86,11 @@ function putAPI(url: string, payload: any): Promise<any> {
       body: JSON.stringify(payload),
     })
       .then((response) => {
-        if (response.status < 305) {
+        if (response.status < 400) {
           return response.json();
-        } else {
-          throw Error("오류 발생");
         }
+
+        throw Error("Error Occured");
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -122,11 +122,11 @@ function deleteAPI(url: string, payload: any): Promise<any> {
       body: JSON.stringify(payload),
     })
       .then((response) => {
-        if (response.status < 305) {
+        if (response.status < 400) {
           return response.json();
-        } else {
-          throw Error("오류 발생");
         }
+
+        throw Error("Error Occured");
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -138,40 +138,5 @@ function deleteAPI(url: string, payload: any): Promise<any> {
       });
   });
 }
-
-/**
- * 리다이렉트용 POST API
- * @param {string} url 요청 URL
- * @param {any} payload 요청 DATA
- * @returns {Promise<any>}
- */
-// function redirectPostAPI(url: string, payload: any): void {
-//   console.debug("parameters: ", payload);
-//   fetch(url, {
-//     method: "POST",
-//     mode: "no-cors",
-//     redirect: "follow",
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(payload),
-//   })
-//     .then((response) => {
-//       if (response.redirected) {
-//         window.location.href = response.url;
-//       } else {
-//         if (window.confirm("오류 발생!")) {
-//           window.close();
-//         }
-//       }
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//       if (window.confirm("오류 발생!")) {
-//         window.close();
-//       }
-//     });
-// }
 
 export { getAPI, postAPI, putAPI, deleteAPI };
