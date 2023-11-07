@@ -6,11 +6,14 @@ import { useCommonStore } from "@/stores/common";
 import { useEffect } from "react";
 
 export default function Test3() {
-  const { setLoading } = useCommonStore();
+  const { handleSetIsLoading } = useCommonStore();
   const query = useQuery(["test3"], queryTest3ClientSide);
 
   const mutation = useMutation({
     mutationFn: mutationTest,
+    onMutate: () => {
+      handleSetIsLoading(true);
+    },
     onSuccess: (mutationResponse, partialConfigUpdate, context) => {
       console.log(mutationResponse);
     },
@@ -19,12 +22,9 @@ export default function Test3() {
     },
     onSettled: (mutationResponse, err, partialConfigUpdate, context) => {
       console.debug(context);
+      handleSetIsLoading(false);
     },
   });
-
-  useEffect(() => {
-    setLoading(mutation.isLoading || query.isLoading);
-  }, [query.isLoading, mutation.isLoading, setLoading]);
 
   const handleClick = () => {
     mutation.mutate({ key: "value" });

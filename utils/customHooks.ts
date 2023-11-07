@@ -71,11 +71,15 @@ export function useGetQuery(key: string, url: string, cb?: () => void) {
     handleSetIsErrorPopupActive,
     handleSetErrorBtn,
   } = useCommonStore();
-  const { data, isError, isLoading } = useQuery([key], () => getAPI(url), {
-    refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
-    // refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
-    // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
-  });
+  const { data, isError, isLoading, error } = useQuery(
+    [key],
+    () => getAPI(url),
+    {
+      refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
+      // refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
+      // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
+    }
+  );
 
   handleSetIsLoading(isLoading);
 

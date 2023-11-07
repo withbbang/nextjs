@@ -21,10 +21,6 @@ export default function Test1() {
     }
   );
 
-  useEffect(() => {
-    handleSetIsLoading(isLoading);
-  }, [isLoading, handleSetIsLoading]);
-
   return (
     <>
       <Title title={"Test1"} />

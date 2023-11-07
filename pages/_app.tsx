@@ -23,15 +23,13 @@ function App({ Component, pageProps }: AppProps) {
   );
 
   return (
-    <>
-      <Loader />
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <Component {...pageProps} />
-          <ReactQueryDevtools />
-        </Hydrate>
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Loader />
+        <Component {...pageProps} />
+        <ReactQueryDevtools />
+      </Hydrate>
+    </QueryClientProvider>
   );
 }
 

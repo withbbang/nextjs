@@ -6,15 +6,11 @@ import { useCommonStore } from "@/stores/common";
 import { useEffect } from "react";
 
 export default function Test2() {
-  const { setLoading } = useCommonStore();
+  const { handleSetIsLoading } = useCommonStore();
   const { data, isError, isLoading, isSuccess } = useQuery(
     ["test2"],
     queryTest2ClientSide
   );
-
-  useEffect(() => {
-    setLoading(isLoading);
-  }, [isLoading, setLoading]);
 
   return (
     <>
