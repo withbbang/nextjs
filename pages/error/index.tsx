@@ -8,21 +8,16 @@ import { useRouter } from "next/router";
 
 export default function Test1() {
   const router = useRouter();
-  const { setLoading } = useCommonStore();
   const { data, isError, isLoading } = useQuery(
     ["error1"],
     queryError1ClientSide,
     {
-      retry: 1, // 데이터 요청 실패시 재요청 횟수(지역적 설정)
+      retry: 0, // 데이터 요청 실패시 재요청 횟수(지역적 설정)
       refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
       // refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
       // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
     }
   );
-
-  useEffect(() => {
-    setLoading(isLoading);
-  }, [isLoading, setLoading]);
 
   if (isError) return <h1>Error Occured</h1>;
 

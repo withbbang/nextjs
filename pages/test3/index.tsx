@@ -6,7 +6,12 @@ import { useCommonStore } from "@/stores/common";
 import { useEffect } from "react";
 
 export default function Test3() {
-  const { handleSetIsLoading } = useCommonStore();
+  const {
+    handleSetIsLoading,
+    handleSetMessage,
+    handleSetIsErrorPopupActive,
+    handleSetErrorBtn,
+  } = useCommonStore();
   const query = useQuery(["test3"], queryTest3ClientSide);
 
   const mutation = useMutation({
@@ -14,14 +19,19 @@ export default function Test3() {
     onMutate: () => {
       handleSetIsLoading(true);
     },
-    onSuccess: (mutationResponse, partialConfigUpdate, context) => {
+    onSuccess: (mutationResponse) => {
       console.log(mutationResponse);
     },
-    onError: (err, partialConfigUpdate, context) => {
-      console.error(err);
+    onError: (error: any) => {
+      handleSetMessage(error.message);
+      handleSetIsErrorPopupActive(true);
+      handleSetErrorBtn(() => {
+        handleSetIsErrorPopupActive(false);
+        handleSetMessage("");
+        // cb?.();
+      });
     },
-    onSettled: (mutationResponse, err, partialConfigUpdate, context) => {
-      console.debug(context);
+    onSettled: () => {
       handleSetIsLoading(false);
     },
   });
