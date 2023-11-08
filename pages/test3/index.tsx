@@ -1,17 +1,17 @@
 import Title from "@/components/Title";
 import styles from "./Test3.module.scss";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { queryTest3ClientSide, mutationTest } from "@/api/test3";
-import { useCommonStore } from "@/stores/common";
-import { useEffect } from "react";
 import { useMutationCustom, useQueryCustom } from "@/utils/customHooks";
-import { NotFoundError } from "@/utils/classes";
 
 export default function Test3() {
-  const query = useQueryCustom("test3", "/api/example", "", () =>
-    console.log("heheehj")
-  );
-  const { data, mutate } = useMutationCustom("/api/post", { key: "value" });
+  const query = useQueryCustom({
+    keys: ["test3"],
+    url: "/api/example",
+    cb: () => console.log("heheehj"),
+  });
+  const { data, mutate } = useMutationCustom({
+    url: "/api/post",
+    params: { key: "value" },
+  });
 
   const handleClick = () => {
     mutate();
@@ -22,6 +22,8 @@ export default function Test3() {
       <Title title={"Test3"} />
       <h1 className={styles.h1}>It is Test3 Page!</h1>
       <button onClick={handleClick}>click!</button>
+      <p>{query && JSON.stringify(query)}</p>
+      <p>{data && JSON.stringify(data)}</p>
     </>
   );
 }

@@ -15,7 +15,7 @@ import {
 import { ThrowErrorInAPIType } from "./types";
 
 /**
- * API 상태 코드에 따른 에러 발생 함수
+ * [API 상태 코드에 따른 에러 발생 함수]
  * @param {ThrowErrorInAPIType} 상태코드, 에러 메세지, 에러팝업 콜백 함수
  */
 export function handleThrowErrorInAPI({

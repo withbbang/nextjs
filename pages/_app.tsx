@@ -17,6 +17,7 @@ import { useCommonStore } from "@/stores/common";
 function App({ Component, pageProps }: AppProps) {
   const { handleSetMessage, handleSetIsErrorPopupActive, handleSetErrorBtn } =
     useCommonStore();
+
   const mutationCache = new MutationCache({
     onError: (error, _variables, _context, mutation) => {
       if (mutation.options.onError) return;
@@ -24,6 +25,7 @@ function App({ Component, pageProps }: AppProps) {
       console.debug("error in mutation: ", error);
     },
   });
+
   const queryCache = new QueryCache({
     onError: (error: any) => {
       handleSetMessage(error.message);
@@ -45,6 +47,7 @@ function App({ Component, pageProps }: AppProps) {
           queries: {
             refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
             retry: 0, // 데이터 요청 실패시 재요청 횟수(전역적으로 설정, 지역적으로 따로 설정 가능)
+            // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
           },
         },
       })

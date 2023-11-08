@@ -1,6 +1,9 @@
 import { TypeCommon } from "@/utils/types";
 import { StoreApi, UseBoundStore, create } from "zustand";
 
+/**
+ * 일반 전역 상태 관리 store
+ */
 export const useCommonStore: UseBoundStore<StoreApi<TypeCommon>> = create(
   (set) => ({
     message: "",

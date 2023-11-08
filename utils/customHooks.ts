@@ -6,43 +6,35 @@ import {
   useMutation,
   useQuery,
 } from "@tanstack/react-query";
+import { TypeUseMustaionCustomParams, TypeUseQueryCustomParams } from "./types";
 
 /**
- * datas 가져오기 커스텀 훅
- * @param {string} key use query key
- * @param {string} url api url
- * @param {string} id specific id
- * @param {function | undefined} cb 에러팝업 콜백
- * @returns
+ * [useQuery 가져오기 커스텀 훅]
+ *
+ * key 배열, url, useQeury Option, 에러팝업 콜백 담고 있는 파라미터 객체
+ * @param {TypeUseQueryCustomParams} parameters
+ * @returns {UseQueryResult}
  */
 export function useQueryCustom(
-  key: string,
-  url: string,
-  id?: string,
-  cb?: () => void
+  parameters: TypeUseQueryCustomParams
 ): UseQueryResult {
-  const { data } = useQuery([key], () => getAPI(url, cb), {
-    // refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
-    // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
-  });
+  const { keys, url, cb } = parameters;
+  const { data } = useQuery(keys, () => getAPI(url, cb));
 
   return data;
 }
 
 /**
- * datas 가져오기 커스텀 훅
- * @param {string} url api url
- * @param {any} param parameters
- * @param {string} id specific id
- * @param {function | undefined} cb 에러팝업 콜백
- * @returns
+ * [uesMutation 가져오기 커스텀 훅]
+ *
+ * url, params, 에러팝업 콜백 담고 있는 파라미터 객체
+ * @param {TypeUseMustaionCustomParams} parameters
+ * @returns {UseMutationResult}
  */
 export function useMutationCustom(
-  url: string,
-  param: any,
-  id?: string,
-  cb?: () => void
+  parameters: TypeUseMustaionCustomParams
 ): UseMutationResult<any, any, void, void> {
+  const { url, params, cb } = parameters;
   const {
     handleSetIsLoading,
     handleSetMessage,
@@ -50,7 +42,7 @@ export function useMutationCustom(
     handleSetErrorBtn,
   } = useCommonStore();
   const mutation = useMutation({
-    mutationFn: () => postAPI(url, param),
+    mutationFn: () => postAPI(url, params),
     onMutate: () => {
       handleSetIsLoading(true);
     },
