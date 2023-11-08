@@ -12,17 +12,19 @@ import {
   ServiceUnavailableError,
   UnauthorizedError,
 } from "./classes";
-import { ThrowErrorInAPIType } from "./types";
+import { TypeThrowErrorInAPI } from "./types";
 
 /**
  * [API 상태 코드에 따른 에러 발생 함수]
- * @param {ThrowErrorInAPIType} 상태코드, 에러 메세지, 에러팝업 콜백 함수
+ *
+ * 상태코드, 에러 메세지, 에러팝업 콜백 함수 담고 있는 파라미터 객체
+ * @param {TypeThrowErrorInAPI} params
  */
 export function handleThrowErrorInAPI({
   status,
   message,
   cb,
-}: ThrowErrorInAPIType) {
+}: TypeThrowErrorInAPI) {
   switch (status) {
     case 400:
       throw new BadRequestError(message ? message : "Bad Request Error", cb);

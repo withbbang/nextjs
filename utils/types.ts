@@ -1,6 +1,10 @@
 /*********************************************************************************
  ***************************** 전역에서 사용하는 타입들 정의 ****************************
  ********************************************************************************/
+
+/**
+ * useQueryCustom 훅의 파라미터 타입
+ */
 export interface TypeUseQueryCustomParams {
   keys: Array<string | number>;
   url: string;
@@ -8,12 +12,18 @@ export interface TypeUseQueryCustomParams {
   cb?: () => any;
 }
 
+/**
+ * useMutationCustom 훅의 파라미터 타입
+ */
 export interface TypeUseMustaionCustomParams {
   url: string;
   params: Object;
   cb?: () => any;
 }
 
+/**
+ * zustand 전역 상태관리 store 타입
+ */
 export interface TypeCommon {
   message: string;
   isLoading: boolean;
@@ -31,21 +41,20 @@ export interface TypeCommon {
   handleSetErrorBtn: (cb?: () => void) => void;
 }
 
-export interface APIError extends Error {
+/**
+ * API Error 일반 타입
+ */
+export interface TypeAPIError extends Error {
   redirectUrl: string;
   notFound: boolean;
   code?: string;
   name: string;
 }
 
-export interface APIErrorType extends Error {
-  redirectUrl: string;
-  notFound: boolean;
-  code?: string;
-  name: string;
-}
-
-export interface ThrowErrorInAPIType {
+/**
+ * API 네트워크 에러가 났을 경우 호출되는 함수(handleThrowErrorInAPI)의 파라미터 타입
+ */
+export interface TypeThrowErrorInAPI {
   status: number;
   message?: string;
   cb?: () => void;
