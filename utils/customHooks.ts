@@ -12,7 +12,7 @@ import {
  * @param {string} key use query key
  * @param {string} url api url
  * @param {string} id specific id
- * @param {function} cb 에러팝업 콜백
+ * @param {function | undefined} cb 에러팝업 콜백
  * @returns
  */
 export function useQueryCustom(
@@ -21,32 +21,12 @@ export function useQueryCustom(
   id?: string,
   cb?: () => void
 ): UseQueryResult {
-  const {
-    handleSetIsLoading,
-    handleSetMessage,
-    handleSetIsErrorPopupActive,
-    handleSetErrorBtn,
-  } = useCommonStore();
-  const { data, isError, isLoading, error } = useQuery(
-    [key],
-    () => getAPI(url),
-    {
-      // refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
-      // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
-    }
-  );
-
-  handleSetIsLoading(isLoading);
-
-  if (isError) {
-    handleSetMessage("Error Occured");
-    handleSetIsErrorPopupActive(true);
-    handleSetErrorBtn(() => {
-      handleSetIsErrorPopupActive(false);
-      handleSetMessage("");
-      cb?.();
-    });
-  }
+  const { handleSetMessage, handleSetIsErrorPopupActive, handleSetErrorBtn } =
+    useCommonStore();
+  const { data, isError } = useQuery([key], () => getAPI(url, cb), {
+    // refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
+    // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
+  });
 
   return data;
 }
@@ -56,7 +36,7 @@ export function useQueryCustom(
  * @param {string} url api url
  * @param {any} param parameters
  * @param {string} id specific id
- * @param {function} cb 에러팝업 콜백
+ * @param {function | undefined} cb 에러팝업 콜백
  * @returns
  */
 export function useMutationCustom(
@@ -85,7 +65,7 @@ export function useMutationCustom(
       handleSetErrorBtn(() => {
         handleSetIsErrorPopupActive(false);
         handleSetMessage("");
-        // cb?.();
+        cb?.();
       });
     },
     onSettled: () => {

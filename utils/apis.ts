@@ -5,9 +5,10 @@ import { handleThrowErrorInAPI } from "./utils";
 /**
  * GET API
  * @param {string} url 요청 URL
+ * @param {function | undefined} cb 에러팝업 콜백
  * @returns {Promise<any>}
  */
-function getAPI(url: string): Promise<any> {
+function getAPI(url: string, cb?: () => void): Promise<any> {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "GET",
@@ -22,7 +23,7 @@ function getAPI(url: string): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI(response.status);
+        handleThrowErrorInAPI({ status: response.status, cb });
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -58,7 +59,7 @@ function postAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI(response.status);
+        handleThrowErrorInAPI({ status: response.status });
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -94,7 +95,7 @@ function putAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI(response.status);
+        handleThrowErrorInAPI({ status: response.status });
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -130,7 +131,7 @@ function deleteAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI(response.status);
+        handleThrowErrorInAPI({ status: response.status });
       })
       .then((result) => {
         console.debug("result: ", result);

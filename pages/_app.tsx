@@ -12,8 +12,11 @@ import { useState } from "react";
 import { appWithTranslation } from "next-i18next";
 import ErrorPopup from "@/components/ErrorPopup";
 import Loader from "@/components/Loader";
+import { useCommonStore } from "@/stores/common";
 
 function App({ Component, pageProps }: AppProps) {
+  const { handleSetMessage, handleSetIsErrorPopupActive, handleSetErrorBtn } =
+    useCommonStore();
   const mutationCache = new MutationCache({
     onError: (error, _variables, _context, mutation) => {
       if (mutation.options.onError) return;
@@ -22,12 +25,20 @@ function App({ Component, pageProps }: AppProps) {
     },
   });
   const queryCache = new QueryCache({
-    onError: (error) => console.debug("error in useQuery: ", error),
+    onError: (error: any) => {
+      handleSetMessage(error.message);
+      handleSetIsErrorPopupActive(true);
+      handleSetErrorBtn(() => {
+        handleSetIsErrorPopupActive(false);
+        handleSetMessage("");
+      });
+    },
   });
 
   const [queryClient] = useState(
     () =>
       new QueryClient({
+        queryCache,
         mutationCache,
         defaultOptions: {
           queries: {
