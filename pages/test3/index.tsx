@@ -5,8 +5,18 @@ import { queryTest3ClientSide, mutationTest } from "@/api/test3";
 import { useCommonStore } from "@/stores/common";
 import { useEffect } from "react";
 import { useMutationCustom } from "@/utils/customHooks";
+import { NotFoundError } from "@/utils/classes";
 
 export default function Test3() {
+  try {
+    throw new NotFoundError("message", "00");
+  } catch (error: any) {
+    console.log(error.name);
+    console.log(error.message);
+    console.log(error.code);
+    console.log(error.notFound);
+  }
+
   const {
     handleSetIsLoading,
     handleSetMessage,

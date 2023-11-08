@@ -1,5 +1,7 @@
 // TODO: 상태 코드를 어떻게 내려줄지 타협 후 핸들링 정의 필요
 
+import { handleThrowErrorInAPI } from "./utils";
+
 /**
  * GET API
  * @param {string} url 요청 URL
@@ -20,7 +22,7 @@ function getAPI(url: string): Promise<any> {
           return response.json();
         }
 
-        throw Error("Error Occured");
+        handleThrowErrorInAPI(response.status);
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -56,7 +58,7 @@ function postAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        throw Error("Error Occured");
+        handleThrowErrorInAPI(response.status);
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -92,7 +94,7 @@ function putAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        throw Error("Error Occured");
+        handleThrowErrorInAPI(response.status);
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -128,7 +130,7 @@ function deleteAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        throw Error("Error Occured");
+        handleThrowErrorInAPI(response.status);
       })
       .then((result) => {
         console.debug("result: ", result);
