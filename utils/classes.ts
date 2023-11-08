@@ -1,3 +1,6 @@
+/*********************************************************************************
+ ****************************** Custom API Error 정의 *****************************
+ ********************************************************************************/
 export class APIError extends Error {
   constructor(message: string, cb?: () => void, code?: string) {
     super(message);
@@ -12,61 +15,48 @@ export class APIError extends Error {
   cb?: () => void;
 }
 
+// 400
 export class BadRequestError extends APIError {
-  // 400
-
   name = "Bad Request Error";
 }
 
+// 401
 export class UnauthorizedError extends APIError {
-  // 401
-
   name = "Unauthorized Error";
 }
 
+// 403
 export class ForbiddenError extends APIError {
-  // 403
-
   name = "Forbidden Error";
 }
 
+// 404
 export class NotFoundError extends APIError {
-  // 404
-
   name = "Not Found Error";
   notFound = true;
 }
 
+// 405
 export class MethodNotAllowedError extends APIError {
-  // 405
-
   name = "Method Not Allowed Error";
 }
 
+// 408
 export class RequestTimeoutError extends APIError {
-  // 408
-
   name = "Request Timeout Error";
-  notFound = true;
 }
 
+// 500
 export class InternalServerErrorError extends APIError {
-  // 500
-
   name = "Internal Server Error Error";
-  notFound = true;
 }
 
+// 502
 export class BadGatewayError extends APIError {
-  // 502
-
   name = "Bad Gateway Error";
-  notFound = true;
 }
 
+// 503
 export class ServiceUnavailableError extends APIError {
-  // 503
-
   name = "Service Unavailable Error";
-  notFound = true;
 }

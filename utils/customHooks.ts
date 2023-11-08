@@ -21,9 +21,7 @@ export function useQueryCustom(
   id?: string,
   cb?: () => void
 ): UseQueryResult {
-  const { handleSetMessage, handleSetIsErrorPopupActive, handleSetErrorBtn } =
-    useCommonStore();
-  const { data, isError } = useQuery([key], () => getAPI(url, cb), {
+  const { data } = useQuery([key], () => getAPI(url, cb), {
     // refetchOnMount: false, // 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
     // staleTime: Infinity, // Infinity로 할시 서버사이드로 데이터 페칭 후 클라이언트사이드로 데이터 재페칭 유무
   });
