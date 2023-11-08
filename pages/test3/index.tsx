@@ -8,7 +8,9 @@ import { useMutationCustom, useQueryCustom } from "@/utils/customHooks";
 import { NotFoundError } from "@/utils/classes";
 
 export default function Test3() {
-  const query = useQueryCustom("test3", "/api/example");
+  const query = useQueryCustom("test3", "/api/example", "", () =>
+    console.log("heheehj")
+  );
   const { data, mutate } = useMutationCustom("/api/post", { key: "value" });
 
   const handleClick = () => {
