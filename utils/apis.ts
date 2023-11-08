@@ -1,3 +1,5 @@
+// TODO: 상태 코드를 어떻게 내려줄지 타협 후 핸들링 정의 필요
+
 /**
  * GET API
  * @param {string} url 요청 URL

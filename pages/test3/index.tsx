@@ -4,6 +4,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryTest3ClientSide, mutationTest } from "@/api/test3";
 import { useCommonStore } from "@/stores/common";
 import { useEffect } from "react";
+import { useMutationCustom } from "@/utils/customHooks";
 
 export default function Test3() {
   const {
@@ -13,31 +14,10 @@ export default function Test3() {
     handleSetErrorBtn,
   } = useCommonStore();
   const query = useQuery(["test3"], queryTest3ClientSide);
-
-  const mutation = useMutation({
-    mutationFn: mutationTest,
-    onMutate: () => {
-      handleSetIsLoading(true);
-    },
-    onSuccess: (mutationResponse) => {
-      console.log(mutationResponse);
-    },
-    onError: (error: any) => {
-      handleSetMessage(error.message);
-      handleSetIsErrorPopupActive(true);
-      handleSetErrorBtn(() => {
-        handleSetIsErrorPopupActive(false);
-        handleSetMessage("");
-        // cb?.();
-      });
-    },
-    onSettled: () => {
-      handleSetIsLoading(false);
-    },
-  });
+  const { data, mutate } = useMutationCustom("/api/post", { key: "value" });
 
   const handleClick = () => {
-    mutation.mutate({ key: "value" });
+    mutate();
   };
 
   return (

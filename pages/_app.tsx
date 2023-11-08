@@ -10,6 +10,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProps } from "next/app";
 import { useState } from "react";
 import { appWithTranslation } from "next-i18next";
+import ErrorPopup from "@/components/ErrorPopup";
 import Loader from "@/components/Loader";
 
 function App({ Component, pageProps }: AppProps) {
@@ -30,7 +31,7 @@ function App({ Component, pageProps }: AppProps) {
         mutationCache,
         defaultOptions: {
           queries: {
-            refetchOnWindowFocus: false,
+            refetchOnWindowFocus: false, // 윈도우 클릭시 마다 데이터 리페칭 유무
             retry: 0, // 데이터 요청 실패시 재요청 횟수(전역적으로 설정, 지역적으로 따로 설정 가능)
           },
         },
@@ -41,7 +42,7 @@ function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Loader />
-        {/* <ErrorPopup /> */}
+        <ErrorPopup />
         <Component {...pageProps} />
         <ReactQueryDevtools />
       </Hydrate>
