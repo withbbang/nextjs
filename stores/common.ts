@@ -1,5 +1,4 @@
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { StoreApi, UseBoundStore, create } from "zustand";
 
 export interface TypeCommon {
   message: string;
@@ -18,31 +17,24 @@ export interface TypeCommon {
   handleSetErrorBtn: (cb?: () => void) => void;
 }
 
-export const useCommonStore = create(
-  persist<TypeCommon>(
-    (set) => ({
-      message: "",
-      isLoading: false,
-      isConfirmPopupActive: false,
-      isErrorPopupActive: false,
-      handleSetMessage: (message: string) => set({ message }),
-      handleSetIsLoading: (isLoading: boolean) => set({ isLoading }),
-      handleSetIsConfirmPopupActive: (isConfirmPopupActive: boolean) =>
-        set({ isConfirmPopupActive }),
-      handleSetIsErrorPopupActive: (isErrorPopupActive: boolean) =>
-        set({ isErrorPopupActive }),
-      handleSetConfirmBtn: (handleConfirmBtn?: () => void) =>
-        set({ handleConfirmBtn }),
-      handleSetCancelBtn: (handleCancelBtn?: () => void) =>
-        set({ handleCancelBtn }),
-      handleSetErrorBtn: (handleErrorBtn?: () => void) =>
-        set({ handleErrorBtn }),
-    }),
-    {
-      name: "common",
-      storage: createJSONStorage(() => sessionStorage),
-    }
-  )
+export const useCommonStore: UseBoundStore<StoreApi<TypeCommon>> = create(
+  (set) => ({
+    message: "",
+    isLoading: false,
+    isConfirmPopupActive: false,
+    isErrorPopupActive: false,
+    handleSetMessage: (message: string) => set({ message }),
+    handleSetIsLoading: (isLoading: boolean) => set({ isLoading }),
+    handleSetIsConfirmPopupActive: (isConfirmPopupActive: boolean) =>
+      set({ isConfirmPopupActive }),
+    handleSetIsErrorPopupActive: (isErrorPopupActive: boolean) =>
+      set({ isErrorPopupActive }),
+    handleSetConfirmBtn: (handleConfirmBtn?: () => void) =>
+      set({ handleConfirmBtn }),
+    handleSetCancelBtn: (handleCancelBtn?: () => void) =>
+      set({ handleCancelBtn }),
+    handleSetErrorBtn: (handleErrorBtn?: () => void) => set({ handleErrorBtn }),
+  })
 );
 
 // export const useMessage = () => useCommonStore((state) => state.message);
