@@ -10,9 +10,10 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProps } from "next/app";
 import { useState } from "react";
 import { appWithTranslation } from "next-i18next";
-import ErrorPopup from "@/components/ErrorPopup";
-import Loader from "@/components/Loader";
 import { useCommonStore } from "@/stores/common";
+import Loader from "@/components/Loader";
+import ConfirmPopup from "@/components/ConfirmPopup";
+import ErrorPopup from "@/components/ErrorPopup";
 
 function App({ Component, pageProps }: AppProps) {
   const { handleSetMessage, handleSetIsErrorPopupActive, handleSetErrorBtn } =
@@ -57,6 +58,7 @@ function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Loader />
+        <ConfirmPopup />
         <ErrorPopup />
         <Component {...pageProps} />
         <ReactQueryDevtools />

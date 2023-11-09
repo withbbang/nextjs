@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./ErrorPopup.module.scss";
 import { useCommonStore } from "@/stores/common";
+import styles from "./ErrorPopup.module.scss";
 
 function ErrorPopup(): JSX.Element {
   const { message, isErrorPopupActive, handleErrorBtn } = useCommonStore();

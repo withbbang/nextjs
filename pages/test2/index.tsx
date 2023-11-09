@@ -3,20 +3,36 @@ import styles from "./Test2.module.scss";
 import { useQuery } from "@tanstack/react-query";
 import { queryTest2ClientSide } from "@/api/test2";
 import { useCommonStore } from "@/stores/common";
-import { useEffect } from "react";
 
 export default function Test2() {
-  const { handleSetIsLoading } = useCommonStore();
-  const { data, isError, isLoading, isSuccess } = useQuery(
-    ["test2"],
-    queryTest2ClientSide
-  );
+  const {
+    handleSetMessage,
+    handleSetIsConfirmPopupActive,
+    handleSetConfirmBtn,
+    handleSetCancelBtn,
+  } = useCommonStore();
+  const { data } = useQuery(["test2"], queryTest2ClientSide);
+
+  const handleClick = () => {
+    handleSetMessage("Confirm Popup Test");
+    handleSetIsConfirmPopupActive(true);
+    handleSetConfirmBtn(() => {
+      console.log("called handleConfirmBtn");
+      handleSetMessage("");
+      handleSetIsConfirmPopupActive(false);
+    });
+    handleSetCancelBtn(() => {
+      handleSetMessage("");
+      handleSetIsConfirmPopupActive(false);
+    });
+  };
 
   return (
     <>
       <Title title={"Test2"} />
       <h1 className={styles.h1}>It is Test2 Page!</h1>
-      <h2>{isSuccess && data.key}</h2>
+      <h2>{data && data.key}</h2>
+      <button onClick={handleClick}>confirmPopup test btn</button>
     </>
   );
 }
