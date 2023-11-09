@@ -63,7 +63,7 @@ export function handleThrowErrorInAPI({
 /**
  * [Status Code는 정상이지만 서버 로직에 의한 에러 발생 함수]
  *
- * 상태코드, 에러 메세지, 에러팝업 콜백 함수 담고 있는 파라미터 객체
+ * 코드, 에러 메세지, 에러팝업 콜백 함수 담고 있는 파라미터 객체
  * @param {TypeThrowErrorInAPI} parameters
  */
 export function handleThrowCustomErrorInAPI({
@@ -71,6 +71,6 @@ export function handleThrowCustomErrorInAPI({
   message,
   cb,
 }: TypeThrowCustomErrorInAPI) {
-  // TODO: 코드에 따라 switch case 분기
+  // TODO: 코드에 따라 switch case 분기 필요
   throw new CustomAPIError(message, cb);
 }
