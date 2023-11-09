@@ -1,5 +1,4 @@
-1 비로그인 페이지(메인, 소개...)들은 getServerSideProps, prefetchQuery로
-  SSR하여 검색엔진에 노출 정도를 높인다.
+1 비로그인 페이지(메인, 소개...)들은 getServerSideProps, prefetchQuery로 SSR하여 검색엔진에 노출 정도를 높인다.
 
 2 비로그인 페이지 중 검색엔진에 노출이 필요 없는 페이지(Q&A, 고객센터...)들은 useEffect로 CSR한다.
 

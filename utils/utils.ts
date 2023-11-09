@@ -28,33 +28,30 @@ export function handleThrowErrorInAPI({
 }: TypeThrowErrorInAPI) {
   switch (status) {
     case 400:
-      throw new BadRequestError(message ? message : "Bad Request Error", cb);
+      throw new BadRequestError(message ? message : "Bad Request", cb);
     case 401:
-      throw new UnauthorizedError(message ? message : "Unauthorized Error", cb);
+      throw new UnauthorizedError(message ? message : "Unauthorized", cb);
     case 403:
-      throw new ForbiddenError(message ? message : "Forbidden Error", cb);
+      throw new ForbiddenError(message ? message : "Forbidden", cb);
     case 404:
-      throw new NotFoundError(message ? message : "Not Found Error", cb);
+      throw new NotFoundError(message ? message : "Not Found", cb);
     case 405:
       throw new MethodNotAllowedError(
-        message ? message : "Method Not Allowed Error",
+        message ? message : "Method Not Allowed",
         cb
       );
     case 408:
-      throw new RequestTimeoutError(
-        message ? message : "Request Timeout Error",
-        cb
-      );
+      throw new RequestTimeoutError(message ? message : "Request Timeout", cb);
     case 500:
       throw new InternalServerErrorError(
-        message ? message : "Internal Server Error",
+        message ? message : "Internal Server",
         cb
       );
     case 502:
-      throw new BadGatewayError(message ? message : "Bad Gateway Error", cb);
+      throw new BadGatewayError(message ? message : "Bad Gateway", cb);
     case 503:
       throw new ServiceUnavailableError(
-        message ? message : "Service Unavailable Error",
+        message ? message : "Service Unavailable",
         cb
       );
   }
