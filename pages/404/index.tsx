@@ -6,16 +6,12 @@ import styles from "./404.module.scss";
 export default function NotFoundPage() {
   const router = useRouter();
 
-  const handleBack = () => {
-    router.back();
-  };
-
   return (
     <>
       <Title title={"Not Found Page"} />
       <div className={styles.wrap}>
         <div className={styles.backBtn}>
-          <span onClick={handleBack}>
+          <span onClick={router.back}>
             <SVG type="back" width="30px" height="30px" />
           </span>
         </div>
