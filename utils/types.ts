@@ -53,6 +53,14 @@ export interface TypeCommon {
   handleSetErrorBtn: (cb?: () => void) => void;
 }
 
+export interface typeSVG {
+  type?: string;
+  width?: string;
+  height?: string;
+  fill?: string;
+  stroke?: string;
+}
+
 /**
  * API Error 일반 타입
  */

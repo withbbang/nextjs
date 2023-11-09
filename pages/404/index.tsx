@@ -1,5 +1,6 @@
 import Title from "@/components/Title";
 import { useRouter } from "next/router";
+import SVG from "@/utils/SVG";
 import styles from "./404.module.scss";
 
 export default function NotFoundPage() {
