@@ -3,7 +3,7 @@
 /*********************************************************************************
  ********************************** API 함수들 정의 *********************************
  ********************************************************************************/
-import { handleThrowErrorInAPI } from "./utils";
+import { handleThrowCustomErrorInAPI, handleThrowErrorInAPI } from "./utils";
 
 /**
  * GET API
@@ -30,6 +30,10 @@ function getAPI(url: string, cb?: () => void): Promise<any> {
       })
       .then((result) => {
         console.debug("result: ", result);
+        const { code, message } = result;
+
+        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message, cb });
+
         resolve(result);
       })
       .catch((error) => {
@@ -66,6 +70,9 @@ function postAPI(url: string, payload: any): Promise<any> {
       })
       .then((result) => {
         console.debug("result: ", result);
+        const { code, message } = result;
+
+        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message });
         resolve(result);
       })
       .catch((error) => {
@@ -102,6 +109,9 @@ function putAPI(url: string, payload: any): Promise<any> {
       })
       .then((result) => {
         console.debug("result: ", result);
+        const { code, message } = result;
+
+        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message });
         resolve(result);
       })
       .catch((error) => {
@@ -138,6 +148,9 @@ function deleteAPI(url: string, payload: any): Promise<any> {
       })
       .then((result) => {
         console.debug("result: ", result);
+        const { code, message } = result;
+
+        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message });
         resolve(result);
       })
       .catch((error) => {

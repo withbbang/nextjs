@@ -69,5 +69,14 @@ export interface TypeAPIError extends Error {
 export interface TypeThrowErrorInAPI {
   status: number;
   message?: string;
-  cb?: () => void;
+  cb?: () => any;
+}
+
+/**
+ * Status Code는 정상이지만 서버 로직에 의한 에러 타입
+ */
+export interface TypeThrowCustomErrorInAPI {
+  code: string;
+  message: string;
+  cb?: () => any;
 }

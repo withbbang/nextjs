@@ -12,7 +12,7 @@ export class APIError extends Error {
   notFound: boolean = false;
   code?: string = "";
   name: string = "API Error";
-  cb?: () => void;
+  cb?: () => any;
 }
 
 // 400
@@ -59,4 +59,9 @@ export class BadGatewayError extends APIError {
 // 503
 export class ServiceUnavailableError extends APIError {
   name = "Service Unavailable Error";
+}
+
+// Status Code는 정상이지만 서버 로직에 의한 에러
+export class CustomAPIError extends APIError {
+  name = "Custom API Error";
 }
