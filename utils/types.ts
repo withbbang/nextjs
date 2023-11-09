@@ -15,10 +15,22 @@ export interface TypeUseQueryCustomParams {
 /**
  * useMutationCustom 훅의 파라미터 타입
  */
-export interface TypeUseMustaionCustomParams {
+export interface TypeUseMstaionCustomParams {
   url: string;
   params: Object;
   cb?: () => any;
+}
+
+/**
+ * useMutationCustomByConfirmPopup 훅의 파라미터 타입
+ */
+export interface TypeUseMutationCustomByConfirmPopupParams {
+  message: string;
+  url: string;
+  params: Object;
+  successCb?: () => any;
+  cancelCb?: () => any;
+  errorCb?: () => any;
 }
 
 /**
