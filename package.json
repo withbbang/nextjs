@@ -24,7 +24,6 @@
     "zustand": "^4.3.9"
   },
   "devDependencies": {
-    "@types/navermaps": "^3.6.5",
     "sass": "^1.64.1"
   }
 }

@@ -12,7 +12,7 @@ import {
 import { TypeUseMustaionCustomParams, TypeUseQueryCustomParams } from "./types";
 
 /**
- * [useQuery 가져오기 커스텀 훅]
+ * [useQuery 커스텀 훅]
  *
  * key 배열, url, useQeury Option, 에러팝업 콜백 담고 있는 파라미터 객체
  * @param {TypeUseQueryCustomParams} parameters
@@ -28,7 +28,7 @@ export function useQueryCustom(
 }
 
 /**
- * [uesMutation 가져오기 커스텀 훅]
+ * [uesMutation 커스텀 훅]
  *
  * url, params, 에러팝업 콜백 담고 있는 파라미터 객체
  * @param {TypeUseMustaionCustomParams} parameters
