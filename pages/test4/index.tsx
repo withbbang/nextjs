@@ -16,6 +16,16 @@ export default function Test4({ data }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  if (context.req.method == "POST") {
+    let body: any = "";
+    context.req.on("data", (chunk) => {
+      body += chunk;
+    });
+    context.req.on("end", () => {
+      console.log(JSON.parse(body));
+    });
+  }
+
   const data = await getAPI("http://localhost:4000/api/example");
 
   return {
