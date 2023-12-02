@@ -5,7 +5,7 @@
 /**
  * useQueryCustom 훅의 파라미터 타입
  */
-export interface TypeUseQueryCustomParams {
+export interface TypeUseQueryCustomHookParams {
   keys: Array<string | number>;
   url: string;
   options?: Object;
@@ -15,7 +15,7 @@ export interface TypeUseQueryCustomParams {
 /**
  * useMutationCustom 훅의 파라미터 타입
  */
-export interface TypeUseMstaionCustomParams {
+export interface TypeUseMstaionCustomHookParams {
   url: string;
   params: Object;
   cb?: () => any;
@@ -24,7 +24,7 @@ export interface TypeUseMstaionCustomParams {
 /**
  * useMutationCustomByConfirmPopup 훅의 파라미터 타입
  */
-export interface TypeUseMutationCustomByConfirmPopupParams {
+export interface TypeUseMutationCustomHookByConfirmPopupParams {
   message: string;
   url: string;
   params: Object;
@@ -41,16 +41,16 @@ export interface TypeCommon {
   isLoading: boolean;
   isConfirmPopupActive: boolean;
   isErrorPopupActive: boolean;
-  handleConfirmBtn?: () => void;
-  handleCancelBtn?: () => void;
-  handleErrorBtn?: () => void;
-  handleSetIsConfirmPopupActive: (isConfirmPopupActive: boolean) => void;
-  handleSetIsErrorPopupActive: (isErrorPopupActive: boolean) => void;
-  handleSetMessage: (message: string) => void;
-  handleSetIsLoading: (isLoading: boolean) => void;
-  handleSetConfirmBtn: (cb?: () => void) => void;
-  handleSetCancelBtn: (cb?: () => void) => void;
-  handleSetErrorBtn: (cb?: () => void) => void;
+  useConfirmBtn?: () => void;
+  useCancelBtn?: () => void;
+  useErrorBtn?: () => void;
+  useSetIsConfirmPopupActive: (isConfirmPopupActive: boolean) => void;
+  useSetIsErrorPopupActive: (isErrorPopupActive: boolean) => void;
+  useSetMessage: (message: string) => void;
+  useSetIsLoading: (isLoading: boolean) => void;
+  useSetConfirmBtn: (cb?: () => void) => void;
+  useSetCancelBtn: (cb?: () => void) => void;
+  useSetErrorBtn: (cb?: () => void) => void;
 }
 
 export interface typeSVG {
