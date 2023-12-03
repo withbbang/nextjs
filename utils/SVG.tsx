@@ -1,19 +1,13 @@
-import React from 'react';
-import { typeSVG } from './types';
+import React from "react";
+import { typeSVG } from "./types";
 
-function SVG({
-  type,
-  width,
-  height,
-  fill,
-  stroke,
-}: typeSVG): React.JSX.Element {
+function SVG({ type, width, height, fill }: typeSVG): React.JSX.Element {
   switch (type) {
-    case 'notFound':
+    case "notFound":
       return (
         <svg
-          width={width !== undefined ? width : '35px'}
-          height={height !== undefined ? height : '35px'}
+          width={width !== undefined ? width : "35px"}
+          height={height !== undefined ? height : "35px"}
           viewBox="-20 10 190 190"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -26,12 +20,12 @@ function SVG({
           />
         </svg>
       );
-    case 'back':
+    case "back":
       return (
         <svg
-          fill={fill !== undefined ? fill : '#000'}
-          width={width !== undefined ? width : '35px'}
-          height={height !== undefined ? height : '35px'}
+          fill={fill !== undefined ? fill : "#000"}
+          width={width !== undefined ? width : "35px"}
+          height={height !== undefined ? height : "35px"}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 52 52"
           enableBackground="new 0 0 52 52"
@@ -44,12 +38,12 @@ function SVG({
           />
         </svg>
       );
-    case 'category':
+    case "category":
       return (
         <svg
-          fill={fill !== undefined ? fill : '#000'}
-          width={width !== undefined ? width : '35px'}
-          height={height !== undefined ? height : '35px'}
+          fill={fill !== undefined ? fill : "#000"}
+          width={width !== undefined ? width : "35px"}
+          height={height !== undefined ? height : "35px"}
           viewBox="0 0 64 64"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -124,12 +118,12 @@ function SVG({
           </g>
         </svg>
       );
-    case 'search':
+    case "search":
       return (
         <svg
           fill="none"
-          width={width !== undefined ? width : '25px'}
-          height={height !== undefined ? height : '25px'}
+          width={width !== undefined ? width : "25px"}
+          height={height !== undefined ? height : "25px"}
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -137,15 +131,15 @@ function SVG({
             fillRule="evenodd"
             clipRule="evenodd"
             d="M4 11C4 7.13401 7.13401 4 11 4C14.866 4 18 7.13401 18 11C18 14.866 14.866 18 11 18C7.13401 18 4 14.866 4 11ZM11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C13.125 20 15.078 19.2635 16.6177 18.0319L20.2929 21.7071C20.6834 22.0976 21.3166 22.0976 21.7071 21.7071C22.0976 21.3166 22.0976 20.6834 21.7071 20.2929L18.0319 16.6177C19.2635 15.078 20 13.125 20 11C20 6.02944 15.9706 2 11 2Z"
-            fill={fill !== undefined ? fill : '#000'}
+            fill={fill !== undefined ? fill : "#000"}
           />
         </svg>
       );
-    case 'trash':
+    case "trash":
       return (
         <svg
-          width={width !== undefined ? width : '30px'}
-          height={height !== undefined ? height : '30px'}
+          width={width !== undefined ? width : "30px"}
+          height={height !== undefined ? height : "30px"}
           viewBox="0 0 1024 1024"
           className="icon"
           version="1.1"
@@ -153,19 +147,19 @@ function SVG({
         >
           <path
             d="M692.2 182.2V72.9H327.8v109.3H145.6v72.9h728.8v-72.9H692.2z m-291.5 0v-36.4h218.6v36.4H400.7zM730.8 874.5H289.2l-34.3-548.8-72.8 4.5 38.6 617.2h578.6l38.6-617.2-72.8-4.5z"
-            fill={fill !== undefined ? fill : '#000'}
+            fill={fill !== undefined ? fill : "#000"}
           />
           <path
             d="M400.7 400.8h72.9v437.3h-72.9zM546.4 400.8h72.9v437.3h-72.9z"
-            fill={fill !== undefined ? fill : '#000'}
+            fill={fill !== undefined ? fill : "#000"}
           />
         </svg>
       );
-    case 'close':
+    case "close":
       return (
         <svg
-          width={width !== undefined ? width : '30px'}
-          height={height !== undefined ? height : '30px'}
+          width={width !== undefined ? width : "30px"}
+          height={height !== undefined ? height : "30px"}
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -173,7 +167,7 @@ function SVG({
             <path
               id="Vector"
               d="M18 18L12 12M12 12L6 6M12 12L18 6M12 12L6 18"
-              stroke={fill !== undefined ? fill : '#000'}
+              stroke={fill !== undefined ? fill : "#000"}
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -181,55 +175,55 @@ function SVG({
           </g>
         </svg>
       );
-    case 'dnd':
+    case "dnd":
       return (
         <svg
-          width={width !== undefined ? width : '35px'}
-          height={height !== undefined ? height : '35px'}
+          width={width !== undefined ? width : "35px"}
+          height={height !== undefined ? height : "35px"}
           viewBox="0 0 24 24"
-          fill={fill !== undefined ? fill : '#000'}
+          fill={fill !== undefined ? fill : "#000"}
           xmlns="http://www.w3.org/2000/svg"
         >
           <g id="Interface / Drag_Horizontal">
             <g id="Vector">
               <path
                 d="M18 14C17.4477 14 17 14.4477 17 15C17 15.5523 17.4477 16 18 16C18.5523 16 19 15.5523 19 15C19 14.4477 18.5523 14 18 14Z"
-                stroke={fill !== undefined ? fill : '#000'}
+                stroke={fill !== undefined ? fill : "#000"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M12 14C11.4477 14 11 14.4477 11 15C11 15.5523 11.4477 16 12 16C12.5523 16 13 15.5523 13 15C13 14.4477 12.5523 14 12 14Z"
-                stroke={fill !== undefined ? fill : '#000'}
+                stroke={fill !== undefined ? fill : "#000"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M6 14C5.44772 14 5 14.4477 5 15C5 15.5523 5.44772 16 6 16C6.55228 16 7 15.5523 7 15C7 14.4477 6.55228 14 6 14Z"
-                stroke={fill !== undefined ? fill : '#000'}
+                stroke={fill !== undefined ? fill : "#000"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M18 8C17.4477 8 17 8.44772 17 9C17 9.55228 17.4477 10 18 10C18.5523 10 19 9.55228 19 9C19 8.44772 18.5523 8 18 8Z"
-                stroke={fill !== undefined ? fill : '#000'}
+                stroke={fill !== undefined ? fill : "#000"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M12 8C11.4477 8 11 8.44772 11 9C11 9.55228 11.4477 10 12 10C12.5523 10 13 9.55228 13 9C13 8.44772 12.5523 8 12 8Z"
-                stroke={fill !== undefined ? fill : '#000'}
+                stroke={fill !== undefined ? fill : "#000"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M6 8C5.44772 8 5 8.44772 5 9C5 9.55228 5.44772 10 6 10C6.55228 10 7 9.55228 7 9C7 8.44772 6.55228 8 6 8Z"
-                stroke={fill !== undefined ? fill : '#000'}
+                stroke={fill !== undefined ? fill : "#000"}
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -238,30 +232,30 @@ function SVG({
           </g>
         </svg>
       );
-    case 'add':
+    case "add":
       return (
         <svg
-          width={width !== undefined ? width : '35px'}
-          height={height !== undefined ? height : '35px'}
-          fill={fill !== undefined ? fill : '#000'}
+          width={width !== undefined ? width : "35px"}
+          height={height !== undefined ? height : "35px"}
+          fill={fill !== undefined ? fill : "#000"}
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M12,1A11,11,0,1,0,23,12,11.013,11.013,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9.01,9.01,0,0,1,12,21Zm5-9a1,1,0,0,1-1,1H13v3a1,1,0,0,1-2,0V13H8a1,1,0,0,1,0-2h3V8a1,1,0,0,1,2,0v3h3A1,1,0,0,1,17,12Z" />
         </svg>
       );
-    case 'modify':
+    case "modify":
       return (
         <svg
-          width={width !== undefined ? width : '30px'}
-          height={height !== undefined ? height : '30px'}
+          width={width !== undefined ? width : "30px"}
+          height={height !== undefined ? height : "30px"}
           viewBox="0 -1 119 119"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
         >
           <g
-            fill={fill !== undefined ? fill : '#000'}
+            fill={fill !== undefined ? fill : "#000"}
             fillRule="evenodd"
             id="Page-1"
             stroke="none"
@@ -270,12 +264,12 @@ function SVG({
             <g fillRule="nonzero" id="edit">
               <path
                 d="M114.2,108.3 L4.8,108.3 C2.5,108.3 0.7,110.2 0.7,112.4 C0.7,114.6 2.6,116.5 4.8,116.5 L114.3,116.5 C116.6,116.5 118.4,114.6 118.4,112.4 C118.4,110.2 116.5,108.3 114.2,108.3 Z"
-                fill={fill !== undefined ? fill : '#000'}
+                fill={fill !== undefined ? fill : "#000"}
                 id="Shape"
               />
               <path
                 d="M0.7,72 L0.6,91.5 C0.6,92.6 1,93.7 1.8,94.5 C2.6,95.3 3.6,95.7 4.7,95.7 L24.1,95.6 C25.2,95.6 26.2,95.2 27,94.4 L94,27.4 C95.6,25.8 95.6,23.2 94,21.5 L74.8,2.1 C73.2,0.5 70.6,0.5 68.9,2.1 L55.5,15.6 L1.9,69.1 C1.2,69.9 0.7,70.9 0.7,72 Z M71.9,10.9 L85.4,24.4 L77.8,32 L64.3,18.5 L71.9,10.9 Z M9,73.8 L58.4,24.4 L71.9,37.9 L22.5,87.2 L8.9,87.3 L9,73.8 Z"
-                fill={fill !== undefined ? fill : '#000'}
+                fill={fill !== undefined ? fill : "#000"}
                 id="Shape"
               />
             </g>
@@ -285,9 +279,9 @@ function SVG({
     default:
       return (
         <svg
-          fill={fill !== undefined ? fill : '#000'}
-          width={width !== undefined ? width : '25px'}
-          height={height !== undefined ? height : '25px'}
+          fill={fill !== undefined ? fill : "#000"}
+          width={width !== undefined ? width : "25px"}
+          height={height !== undefined ? height : "25px"}
           viewBox="0 0 16 16"
           xmlns="http://www.w3.org/2000/svg"
         >
