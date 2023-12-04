@@ -1,6 +1,7 @@
 /*********************************************************************************
  *********************************** 커스텀 훅 정의 *********************************
  ********************************************************************************/
+import { useCallback } from "react";
 import { useCommonStore } from "@/stores/common";
 import { getAPI, postAPI } from "./apis";
 import {
@@ -10,7 +11,7 @@ import {
 } from "@tanstack/react-query";
 import {
   TypeUseMstaionCustomHookParams,
-  TypeUseMutationCustomHookByConfirmPopupParams,
+  TypeUseMutationCustomHookByConfirmPopupHookParams,
   TypeUseQueryCustomHookParams,
 } from "./types";
 
@@ -24,8 +25,8 @@ import {
 export function useQueryCustomHook(
   parameters: TypeUseQueryCustomHookParams
 ): any {
-  const { keys, url, cb } = parameters;
-  const { data } = useQuery(keys, () => getAPI(url, cb));
+  const { keys, url, errorCb } = parameters;
+  const { data } = useQuery(keys, () => getAPI(url, errorCb));
 
   return data;
 }
@@ -35,12 +36,12 @@ export function useQueryCustomHook(
  *
  * url, params, 에러팝업 콜백 담고 있는 파라미터 객체
  * @param {TypeUseMstaionCustomHookParams} parameters
- * @returns {UseMutationResult}
+ * @returns
  */
-export function useMutationCustom(
+export function useMutationCustomHook(
   parameters: TypeUseMstaionCustomHookParams
-): UseMutationResult<any, any, void, void> {
-  const { url, params, cb } = parameters;
+) {
+  const { url, errorCb } = parameters;
   const {
     useSetIsLoading,
     useSetMessage,
@@ -48,8 +49,8 @@ export function useMutationCustom(
     useSetErrorBtn,
   } = useCommonStore();
 
-  const mutation = useMutation({
-    mutationFn: () => postAPI(url, params),
+  const { data, mutate } = useMutation({
+    mutationFn: (params: any) => postAPI(url, params),
     onMutate: () => {
       useSetIsLoading(true);
     },
@@ -62,7 +63,7 @@ export function useMutationCustom(
       useSetErrorBtn(() => {
         useSetIsErrorPopupActive(false);
         useSetMessage("");
-        cb?.();
+        errorCb?.();
       });
     },
     onSettled: () => {
@@ -70,7 +71,7 @@ export function useMutationCustom(
     },
   });
 
-  return mutation;
+  return { data, mutate };
 }
 /**
  * [확인 팝업의 uesMutation 커스텀 훅]
@@ -79,10 +80,10 @@ export function useMutationCustom(
  * @param parameters
  * @returns
  */
-export function useMutationCustomByConfirmPopup(
-  parameters: TypeUseMutationCustomHookByConfirmPopupParams
+export function useMutationCustomByConfirmPopupHook(
+  parameters: TypeUseMutationCustomHookByConfirmPopupHookParams
 ) {
-  const { message, url, params, successCb, cancelCb, errorCb } = parameters;
+  const { message, url, successCb, cancelCb, errorCb } = parameters;
   const {
     useSetMessage,
     useSetIsLoading,
@@ -94,7 +95,7 @@ export function useMutationCustomByConfirmPopup(
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: () => postAPI(url, params),
+    mutationFn: (params) => postAPI(url, params),
     onMutate: () => {
       useSetIsLoading(true);
     },
@@ -115,11 +116,11 @@ export function useMutationCustomByConfirmPopup(
     },
   });
 
-  function useSetActiveConfirmPopup() {
+  const useSetActiveConfirmPopup = useCallback((params: any) => {
     useSetMessage(message);
     useSetIsConfirmPopupActive(true);
     useSetConfirmBtn(() => {
-      mutate();
+      mutate(params);
       useSetMessage("");
       useSetIsConfirmPopupActive(false);
     });
@@ -128,7 +129,7 @@ export function useMutationCustomByConfirmPopup(
       useSetMessage("");
       useSetIsConfirmPopupActive(false);
     });
-  }
+  }, []);
 
   return { data, useSetActiveConfirmPopup };
 }

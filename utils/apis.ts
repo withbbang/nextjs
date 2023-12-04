@@ -9,7 +9,7 @@ import { handleThrowCustomErrorInAPI, handleThrowErrorInAPI } from "./utils";
  * @param {function | undefined} cb 에러팝업 콜백
  * @returns {Promise<any>}
  */
-function getAPI(url: string, cb?: () => void): Promise<any> {
+function getAPI(url: string, errorCb?: () => void): Promise<any> {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "GET",
@@ -24,13 +24,14 @@ function getAPI(url: string, cb?: () => void): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI({ status: response.status, cb });
+        handleThrowErrorInAPI({ status: response.status, errorCb });
       })
       .then((result) => {
         console.debug("result: ", result);
         const { code, message } = result;
 
-        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message, cb });
+        if (code !== "0000")
+          handleThrowCustomErrorInAPI({ code, message, errorCb });
 
         resolve(result);
       })

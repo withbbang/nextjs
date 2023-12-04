@@ -24,35 +24,38 @@ import { TypeThrowCustomErrorInAPI, TypeThrowErrorInAPI } from "./types";
 export function handleThrowErrorInAPI({
   status,
   message,
-  cb,
+  errorCb,
 }: TypeThrowErrorInAPI) {
   switch (status) {
     case 400:
-      throw new BadRequestError(message ? message : "Bad Request", cb);
+      throw new BadRequestError(message ? message : "Bad Request", errorCb);
     case 401:
-      throw new UnauthorizedError(message ? message : "Unauthorized", cb);
+      throw new UnauthorizedError(message ? message : "Unauthorized", errorCb);
     case 403:
-      throw new ForbiddenError(message ? message : "Forbidden", cb);
+      throw new ForbiddenError(message ? message : "Forbidden", errorCb);
     case 404:
-      throw new NotFoundError(message ? message : "Not Found", cb);
+      throw new NotFoundError(message ? message : "Not Found", errorCb);
     case 405:
       throw new MethodNotAllowedError(
         message ? message : "Method Not Allowed",
-        cb
+        errorCb
       );
     case 408:
-      throw new RequestTimeoutError(message ? message : "Request Timeout", cb);
+      throw new RequestTimeoutError(
+        message ? message : "Request Timeout",
+        errorCb
+      );
     case 500:
       throw new InternalServerErrorError(
         message ? message : "Internal Server",
-        cb
+        errorCb
       );
     case 502:
-      throw new BadGatewayError(message ? message : "Bad Gateway", cb);
+      throw new BadGatewayError(message ? message : "Bad Gateway", errorCb);
     case 503:
       throw new ServiceUnavailableError(
         message ? message : "Service Unavailable",
-        cb
+        errorCb
       );
   }
 }
@@ -66,8 +69,8 @@ export function handleThrowErrorInAPI({
 export function handleThrowCustomErrorInAPI({
   code,
   message,
-  cb,
+  errorCb,
 }: TypeThrowCustomErrorInAPI) {
   // TODO: 코드에 따라 switch case 분기 필요
-  throw new CustomAPIError(message, cb);
+  throw new CustomAPIError(message, errorCb);
 }

@@ -8,11 +8,11 @@ import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { queryTest1ServerSide } from "@/api/test1";
 import { useTranslation } from "next-i18next";
-import { useQueryCustom } from "@/utils/customHooks";
+import { useQueryCustomHook } from "@/utils/customHooks";
 
 export default function Test1() {
   const { t } = useTranslation("translate");
-  const query = useQueryCustom({
+  const query = useQueryCustomHook({
     keys: ["test1"],
     url: "/api/example",
   });
@@ -21,7 +21,7 @@ export default function Test1() {
     <>
       <Title title={"Test1"} />
       <h1 className={styles.h1}>{t("h1")}</h1>
-      <h1 className={styles.h1}>{query.key}</h1>
+      <h1 className={styles.h1}>{query && query.key}</h1>
     </>
   );
 }

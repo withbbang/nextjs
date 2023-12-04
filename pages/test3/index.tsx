@@ -3,21 +3,20 @@
  ********************************************************************************/
 import Title from "@/components/Title";
 import styles from "./Test3.module.scss";
-import { useMutationCustom, useQueryCustom } from "@/utils/customHooks";
+import { useMutationCustomHook, useQueryCustomHook } from "@/utils/customHooks";
 
 export default function Test3() {
-  const query = useQueryCustom({
+  const query = useQueryCustomHook({
     keys: ["test3"],
     url: "/api/example",
-    cb: () => console.log("heheehj"),
+    errorCb: () => console.log("heheehj"),
   });
-  const { data, mutate } = useMutationCustom({
+  const { data, mutate } = useMutationCustomHook({
     url: "/api/post",
-    params: { key: "value" },
   });
 
   const handleClick = () => {
-    mutate();
+    mutate({ key: "value" });
   };
 
   return (

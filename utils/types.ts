@@ -9,7 +9,7 @@ export interface TypeUseQueryCustomHookParams {
   keys: Array<string | number>;
   url: string;
   options?: Object;
-  cb?: () => any;
+  errorCb?: () => any;
 }
 
 /**
@@ -17,17 +17,15 @@ export interface TypeUseQueryCustomHookParams {
  */
 export interface TypeUseMstaionCustomHookParams {
   url: string;
-  params: Object;
-  cb?: () => any;
+  errorCb?: () => any;
 }
 
 /**
  * useMutationCustomByConfirmPopup 훅의 파라미터 타입
  */
-export interface TypeUseMutationCustomHookByConfirmPopupParams {
+export interface TypeUseMutationCustomHookByConfirmPopupHookParams {
   message: string;
   url: string;
-  params: Object;
   successCb?: () => any;
   cancelCb?: () => any;
   errorCb?: () => any;
@@ -77,7 +75,7 @@ export interface TypeAPIError extends Error {
 export interface TypeThrowErrorInAPI {
   status: number;
   message?: string;
-  cb?: () => any;
+  errorCb?: () => any;
 }
 
 /**
@@ -86,5 +84,5 @@ export interface TypeThrowErrorInAPI {
 export interface TypeThrowCustomErrorInAPI {
   code: string;
   message: string;
-  cb?: () => any;
+  errorCb?: () => any;
 }
