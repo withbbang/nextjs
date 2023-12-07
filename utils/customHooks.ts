@@ -14,7 +14,7 @@ import {
 /**
  * [useQuery 커스텀 훅]
  *
- * key 배열, url, useQeury Option, API 실패시 바로 실행하는 콜백, 에러팝업 콜백을 담고 있는 객체
+ * key 배열, url, useQeury Option, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
  * @param {TypeUseQueryCustomHookParams} parameters
  * @returns {any}
  */
@@ -30,7 +30,7 @@ export function useQueryCustomHook(
 /**
  * [uesMutation 커스텀 훅]
  *
- * url, useQeury Option, API 실패시 바로 실행하는 콜백, 에러팝업 콜백을 담고 있는 객체
+ * url, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
  * @param {TypeUseMstaionCustomHookParams} parameters
  * @returns
  */
@@ -73,7 +73,7 @@ export function useMutationCustomHook(
 /**
  * [확인 팝업의 uesMutation 커스텀 훅]
  *
- * 확인 팝업 message, url, params, 성공콜백, 취소콜백, 에러팝업 콜백 담고 있는 파라미터 객체
+ * 팝업 message, url, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
  * @param parameters
  * @returns
  */
