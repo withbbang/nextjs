@@ -4,12 +4,18 @@
 import { handleThrowCustomErrorInAPI, handleThrowErrorInAPI } from "./utils";
 
 /**
- * GET API
+ * [GET API]
+ *
  * @param {string} url 요청 URL
- * @param {function | undefined} cb 에러팝업 콜백
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
+ * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
  * @returns {Promise<any>}
  */
-function getAPI(url: string, errorCb?: () => void): Promise<any> {
+function getAPI(
+  url: string,
+  failCb?: () => any,
+  errorPopupBtnCb?: () => any
+): Promise<any> {
   return new Promise((resolve, reject) => {
     fetch(url, {
       method: "GET",
@@ -24,14 +30,23 @@ function getAPI(url: string, errorCb?: () => void): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI({ status: response.status, errorCb });
+        return handleThrowErrorInAPI({
+          status: response.status,
+          failCb,
+          errorPopupBtnCb,
+        });
       })
       .then((result) => {
         console.debug("result: ", result);
         const { code, message } = result;
 
         if (code !== "0000")
-          handleThrowCustomErrorInAPI({ code, message, errorCb });
+          handleThrowCustomErrorInAPI({
+            code,
+            message,
+            failCb,
+            errorPopupBtnCb,
+          });
 
         resolve(result);
       })
@@ -46,9 +61,10 @@ function getAPI(url: string, errorCb?: () => void): Promise<any> {
  * POST API
  * @param {string} url 요청 URL
  * @param {any} payload 요청 DATA
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
  * @returns {Promise<any>}
  */
-function postAPI(url: string, payload: any): Promise<any> {
+function postAPI(url: string, payload: any, failCb?: () => any): Promise<any> {
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -65,7 +81,7 @@ function postAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI({ status: response.status });
+        return handleThrowErrorInAPI({ status: response.status });
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -85,9 +101,10 @@ function postAPI(url: string, payload: any): Promise<any> {
  * PUT API
  * @param {string} url 요청 URL
  * @param {any} payload 요청 DATA
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
  * @returns {Promise<any>}
  */
-function putAPI(url: string, payload: any): Promise<any> {
+function putAPI(url: string, payload: any, failCb?: () => any): Promise<any> {
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -104,7 +121,7 @@ function putAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI({ status: response.status });
+        return handleThrowErrorInAPI({ status: response.status });
       })
       .then((result) => {
         console.debug("result: ", result);
@@ -124,9 +141,14 @@ function putAPI(url: string, payload: any): Promise<any> {
  * DELETE API
  * @param {string} url 요청 URL
  * @param {any} payload 요청 DATA
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
  * @returns {Promise<any>}
  */
-function deleteAPI(url: string, payload: any): Promise<any> {
+function deleteAPI(
+  url: string,
+  payload: any,
+  failCb?: () => any
+): Promise<any> {
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -143,7 +165,7 @@ function deleteAPI(url: string, payload: any): Promise<any> {
           return response.json();
         }
 
-        handleThrowErrorInAPI({ status: response.status });
+        return handleThrowErrorInAPI({ status: response.status });
       })
       .then((result) => {
         console.debug("result: ", result);

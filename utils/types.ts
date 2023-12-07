@@ -3,32 +3,54 @@
  ********************************************************************************/
 
 /**
- * useQueryCustom 훅의 파라미터 타입
+ * [useQueryCustomHook 훅의 파라미터 타입]
+ *
+ * @param {Array<string | number>} keys useQuery key 배열
+ * @param {string} url url
+ * @param {Object | undefined} options useQuery 옵션
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
+ * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
  */
 export interface TypeUseQueryCustomHookParams {
   keys: Array<string | number>;
   url: string;
   options?: Object;
-  errorCb?: () => any;
+  failCb?: () => any;
+  errorPopupBtnCb?: () => any;
 }
 
 /**
- * useMutationCustom 훅의 파라미터 타입
+ * [useMutationCustomHook 훅의 파라미터 타입]
+ *
+ * @param {string} url url
+ * @param {Function | undefined} successCb API 성공시 실행하는 콜백
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
+ * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
  */
 export interface TypeUseMstaionCustomHookParams {
   url: string;
-  errorCb?: () => any;
+  successCb?: () => any;
+  failCb?: () => any;
+  errorPopupBtnCb?: () => any;
 }
 
 /**
- * useMutationCustomByConfirmPopup 훅의 파라미터 타입
+ * [useMutationCustomByConfirmPopupHook 훅의 파라미터 타입]
+ *
+ * @param {string} message 팝업 message
+ * @param {string} url url
+ * @param {Function | undefined} successCb API 성공시 실행하는 콜백
+ * @param {Function | undefined} cancelBtnCb 팝업 취소 버튼 콜백
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
+ * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
  */
 export interface TypeUseMutationCustomHookByConfirmPopupHookParams {
   message: string;
   url: string;
   successCb?: () => any;
-  cancelCb?: () => any;
-  errorCb?: () => any;
+  cancelBtnCb?: () => any;
+  failCb?: () => any;
+  errorPopupBtnCb?: () => any;
 }
 
 /**
@@ -60,7 +82,7 @@ export interface typeSVG {
 }
 
 /**
- * API Error 일반 타입
+ * [API Error 일반 타입]
  */
 export interface TypeAPIError extends Error {
   redirectUrl: string;
@@ -70,19 +92,31 @@ export interface TypeAPIError extends Error {
 }
 
 /**
- * API 네트워크 에러가 났을 경우 호출되는 함수(handleThrowErrorInAPI)의 파라미터 타입
+ * [API 네트워크 에러가 났을 경우 호출되는 함수(handleThrowErrorInAPI)의 파라미터 타입]
+ *
+ * @param {number} status 상태 코드
+ * @param {string | undefined} message 메세지
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
+ * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
  */
 export interface TypeThrowErrorInAPI {
   status: number;
   message?: string;
-  errorCb?: () => any;
+  failCb?: () => any;
+  errorPopupBtnCb?: () => any;
 }
 
 /**
- * Status Code는 정상이지만 서버 로직에 의한 에러 타입
+ * [Status Code는 정상이지만 서버 로직에 의한 에러 타입]
+ *
+ * @param {string} code 결과 코드
+ * @param {string | undefined} message 메세지
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
+ * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
  */
 export interface TypeThrowCustomErrorInAPI {
   code: string;
   message: string;
-  errorCb?: () => any;
+  failCb?: () => any;
+  errorPopupBtnCb?: () => any;
 }

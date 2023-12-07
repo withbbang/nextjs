@@ -4,11 +4,7 @@
 import { useCallback } from "react";
 import { useCommonStore } from "@/stores/common";
 import { getAPI, postAPI } from "./apis";
-import {
-  UseMutationResult,
-  useMutation,
-  useQuery,
-} from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   TypeUseMstaionCustomHookParams,
   TypeUseMutationCustomHookByConfirmPopupHookParams,
@@ -18,15 +14,15 @@ import {
 /**
  * [useQuery 커스텀 훅]
  *
- * key 배열, url, useQeury Option, 에러팝업 콜백 담고 있는 파라미터 객체
+ * key 배열, url, useQeury Option, API 실패시 바로 실행하는 콜백, 에러팝업 콜백을 담고 있는 객체
  * @param {TypeUseQueryCustomHookParams} parameters
  * @returns {any}
  */
 export function useQueryCustomHook(
   parameters: TypeUseQueryCustomHookParams
 ): any {
-  const { keys, url, errorCb } = parameters;
-  const { data } = useQuery(keys, () => getAPI(url, errorCb));
+  const { keys, url, failCb, errorPopupBtnCb } = parameters;
+  const { data } = useQuery(keys, () => getAPI(url, failCb, errorPopupBtnCb));
 
   return data;
 }
@@ -34,14 +30,14 @@ export function useQueryCustomHook(
 /**
  * [uesMutation 커스텀 훅]
  *
- * url, params, 에러팝업 콜백 담고 있는 파라미터 객체
+ * url, useQeury Option, API 실패시 바로 실행하는 콜백, 에러팝업 콜백을 담고 있는 객체
  * @param {TypeUseMstaionCustomHookParams} parameters
  * @returns
  */
 export function useMutationCustomHook(
   parameters: TypeUseMstaionCustomHookParams
 ) {
-  const { url, errorCb } = parameters;
+  const { url, successCb, failCb, errorPopupBtnCb } = parameters;
   const {
     useSetIsLoading,
     useSetMessage,
@@ -50,12 +46,13 @@ export function useMutationCustomHook(
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: (params: any) => postAPI(url, params),
+    mutationFn: (params: any) => postAPI(url, params, failCb),
     onMutate: () => {
       useSetIsLoading(true);
     },
     onSuccess: (response) => {
-      console.log(response);
+      console.debug(response);
+      successCb?.();
     },
     onError: (error: any) => {
       useSetMessage(error.message);
@@ -63,7 +60,7 @@ export function useMutationCustomHook(
       useSetErrorBtn(() => {
         useSetIsErrorPopupActive(false);
         useSetMessage("");
-        errorCb?.();
+        errorPopupBtnCb?.();
       });
     },
     onSettled: () => {
@@ -83,7 +80,8 @@ export function useMutationCustomHook(
 export function useMutationCustomByConfirmPopupHook(
   parameters: TypeUseMutationCustomHookByConfirmPopupHookParams
 ) {
-  const { message, url, successCb, cancelCb, errorCb } = parameters;
+  const { message, url, successCb, cancelBtnCb, failCb, errorPopupBtnCb } =
+    parameters;
   const {
     useSetMessage,
     useSetIsLoading,
@@ -95,11 +93,12 @@ export function useMutationCustomByConfirmPopupHook(
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: (params) => postAPI(url, params),
+    mutationFn: (params) => postAPI(url, params, failCb),
     onMutate: () => {
       useSetIsLoading(true);
     },
     onSuccess: (response) => {
+      console.debug(response);
       successCb?.();
     },
     onError: (error: any) => {
@@ -108,7 +107,7 @@ export function useMutationCustomByConfirmPopupHook(
       useSetErrorBtn(() => {
         useSetIsErrorPopupActive(false);
         useSetMessage("");
-        errorCb?.();
+        errorPopupBtnCb?.();
       });
     },
     onSettled: () => {
@@ -125,7 +124,7 @@ export function useMutationCustomByConfirmPopupHook(
       useSetIsConfirmPopupActive(false);
     });
     useSetCancelBtn(() => {
-      cancelCb?.();
+      cancelBtnCb?.();
       useSetMessage("");
       useSetIsConfirmPopupActive(false);
     });

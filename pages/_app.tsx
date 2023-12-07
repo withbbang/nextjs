@@ -34,7 +34,7 @@ function App({ Component, pageProps }: AppProps) {
       useSetErrorBtn(() => {
         useSetIsErrorPopupActive(false);
         useSetMessage("");
-        error?.cb?.();
+        error?.errorPopupBtnCb?.();
       });
     },
   });

@@ -2,9 +2,9 @@
  ****************************** Custom API Error 정의 *****************************
  ********************************************************************************/
 export class APIError extends Error {
-  constructor(message: string, cb?: () => void, code?: string) {
+  constructor(message: string, errorPopupBtnCb?: () => void, code?: string) {
     super(message);
-    this.cb = cb;
+    this.errorPopupBtnCb = errorPopupBtnCb;
     this.code = code;
   }
 
@@ -12,7 +12,7 @@ export class APIError extends Error {
   notFound: boolean = false;
   code?: string = "";
   name: string = "API Error";
-  cb?: () => any;
+  errorPopupBtnCb?: () => any;
 }
 
 // 400
