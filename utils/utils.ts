@@ -18,7 +18,7 @@ import { TypeThrowCustomErrorInAPI, TypeThrowErrorInAPI } from "./types";
 /**
  * [API 상태 코드에 따른 에러 발생 함수]
  *
- * 상태코드, 에러 메세지, API 실패시 바로 실행하는 콜백 함수를 담고 있는 파라미터 객체
+ * 상태코드, 에러 메세지, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
  * @param {TypeThrowErrorInAPI} parameters
  */
 export function handleThrowErrorInAPI({
@@ -74,8 +74,8 @@ export function handleThrowErrorInAPI({
 /**
  * [Status Code는 정상이지만 서버 로직에 의한 에러 발생 함수]
  *
- * 코드, 에러 메세지, API 실패시 바로 실행하는 콜백 함수를 담고 있는 파라미터 객체
- * @param {TypeThrowErrorInAPI} parameters
+ * 코드, 에러 메세지, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
+ * @param {TypeThrowCustomErrorInAPI} parameters
  */
 export function handleThrowCustomErrorInAPI({
   code,
