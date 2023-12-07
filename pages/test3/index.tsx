@@ -9,7 +9,8 @@ export default function Test3() {
   const query = useQueryCustomHook({
     keys: ["test3"],
     url: "/api/example",
-    errorCb: () => console.log("heheehj"),
+    failCb: () => console.warn("called failCb"),
+    errorPopupBtnCb: () => console.warn("called errorPopupBtnCb"),
   });
   const { data, mutate } = useMutationCustomHook({
     url: "/api/post",

@@ -14,8 +14,8 @@ export default function Test2() {
       message: "Confirm Popup Test",
       url: "/api/post",
       successCb: () => console.log("called handleConfirmBtn"),
-      cancelCb: () => console.log("called handleCancelBtn"),
-      errorCb: () => console.log("error test"),
+      cancelBtnCb: () => console.log("called handleCancelBtn"),
+      failCb: () => console.log("error test"),
     });
 
   const handleClick = () => {
