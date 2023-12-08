@@ -1,7 +1,7 @@
 import React from "react";
-import { typeSVG } from "./types";
+import { TypeSVG } from "./types";
 
-function SVG({ type, width, height, fill }: typeSVG): React.JSX.Element {
+function SVG({ type, width, height, fill }: TypeSVG): React.JSX.Element {
   switch (type) {
     case "notFound":
       return (

@@ -5,11 +5,11 @@
 /**
  * [useQueryCustomHook 훅의 파라미터 타입]
  *
- * @param {Array<string | number>} keys useQuery key 배열
- * @param {string} url url
- * @param {Object | undefined} options useQuery 옵션
- * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
- * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
+ * @type {Array<string | number>} keys: useQuery key 배열
+ * @type {string} url: api url
+ * @type {Object | undefined} options: useQuery 옵션
+ * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
+ * @type {Function | undefined} errorPopupBtnCb: 에러팝업 버튼 콜백
  */
 export interface TypeUseQueryCustomHookParams {
   keys: Array<string | number>;
@@ -22,10 +22,10 @@ export interface TypeUseQueryCustomHookParams {
 /**
  * [useMutationCustomHook 훅의 파라미터 타입]
  *
- * @param {string} url url
- * @param {Function | undefined} successCb API 성공시 실행하는 콜백
- * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
- * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
+ * @type {string} url: api url
+ * @type {Function | undefined} successCb: API 성공시 실행하는 콜백
+ * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
+ * @type {Function | undefined} errorPopupBtnCb: 에러팝업 버튼 콜백
  */
 export interface TypeUseMstaionCustomHookParams {
   url: string;
@@ -37,12 +37,12 @@ export interface TypeUseMstaionCustomHookParams {
 /**
  * [useMutationCustomByConfirmPopupHook 훅의 파라미터 타입]
  *
- * @param {string} message 팝업 message
- * @param {string} url url
- * @param {Function | undefined} successCb API 성공시 실행하는 콜백
- * @param {Function | undefined} cancelBtnCb 팝업 취소 버튼 콜백
- * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
- * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
+ * @type {string} message: 팝업 message
+ * @type {string} url: api url
+ * @type {Function | undefined} successCb: API 성공시 실행하는 콜백
+ * @type {Function | undefined} cancelBtnCb: 팝업 취소 버튼 콜백
+ * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
+ * @type {Function | undefined} errorPopupBtnCb: 에러팝업 버튼 콜백
  */
 export interface TypeUseMutationCustomHookByConfirmPopupHookParams {
   message: string;
@@ -73,7 +73,7 @@ export interface TypeCommon {
   useSetErrorBtn: (cb?: () => void) => void;
 }
 
-export interface typeSVG {
+export interface TypeSVG {
   type?: string;
   width?: string;
   height?: string;
@@ -94,10 +94,10 @@ export interface TypeAPIError extends Error {
 /**
  * [API 네트워크 에러가 났을 경우 호출되는 함수(handleThrowErrorInAPI)의 파라미터 타입]
  *
- * @param {number} status 상태 코드
- * @param {string | undefined} message 메세지
- * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
- * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
+ * @type {number} status: 상태 코드
+ * @type {string | undefined} message: 메세지
+ * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
+ * @type {Function | undefined} errorPopupBtnCb: 에러팝업 버튼 콜백
  */
 export interface TypeThrowErrorInAPI {
   status: number;
@@ -109,10 +109,10 @@ export interface TypeThrowErrorInAPI {
 /**
  * [Status Code는 정상이지만 서버 로직에 의한 에러 타입]
  *
- * @param {string} code 결과 코드
- * @param {string | undefined} message 메세지
- * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
- * @param {Function | undefined} errorPopupBtnCb 에러팝업 버튼 콜백
+ * @type {string} code: 결과 코드
+ * @type {string | undefined} message: 메세지
+ * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
+ * @type {Function | undefined} errorPopupBtnCb: 에러팝업 버튼 콜백
  */
 export interface TypeThrowCustomErrorInAPI {
   code: string;
