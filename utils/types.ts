@@ -23,12 +23,14 @@ export interface TypeUseQueryCustomHookParams {
  * [useMutationCustomHook 훅의 파라미터 타입]
  *
  * @type {string} url: api url
+ * @type {Function | undefined} checkValidatioinCb: 요청 전 유효성 검사 콜백
  * @type {Function | undefined} successCb: API 성공시 실행하는 콜백
  * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
  * @type {Function | undefined} errorPopupBtnCb: 에러팝업 버튼 콜백
  */
 export interface TypeUseMstaionCustomHookParams {
   url: string;
+  checkValidatioinCb?: () => any;
   successCb?: () => any;
   failCb?: () => any;
   errorPopupBtnCb?: () => any;
@@ -39,6 +41,7 @@ export interface TypeUseMstaionCustomHookParams {
  *
  * @type {string} message: 팝업 message
  * @type {string} url: api url
+ * @type {Function | undefined} checkValidatioinCb: 요청 전 유효성 검사 콜백
  * @type {Function | undefined} successCb: API 성공시 실행하는 콜백
  * @type {Function | undefined} cancelBtnCb: 팝업 취소 버튼 콜백
  * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
@@ -47,6 +50,7 @@ export interface TypeUseMstaionCustomHookParams {
 export interface TypeUseMutationCustomHookByConfirmPopupHookParams {
   message: string;
   url: string;
+  checkValidatioinCb?: () => any;
   successCb?: () => any;
   cancelBtnCb?: () => any;
   failCb?: () => any;

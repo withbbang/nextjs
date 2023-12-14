@@ -30,14 +30,15 @@ export function useQueryCustomHook(
 /**
  * [uesMutation 커스텀 훅]
  *
- * url, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
+ * url, 요청 전 유효성 검사 콜백, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
  * @param {TypeUseMstaionCustomHookParams} parameters
  * @returns
  */
 export function useMutationCustomHook(
   parameters: TypeUseMstaionCustomHookParams
 ) {
-  const { url, successCb, failCb, errorPopupBtnCb } = parameters;
+  const { url, checkValidatioinCb, successCb, failCb, errorPopupBtnCb } =
+    parameters;
   const {
     useSetIsLoading,
     useSetMessage,
@@ -49,6 +50,7 @@ export function useMutationCustomHook(
     mutationFn: (params: any) => postAPI(url, params, failCb),
     onMutate: () => {
       useSetIsLoading(true);
+      checkValidatioinCb?.();
     },
     onSuccess: (response) => {
       console.debug(response);
@@ -73,15 +75,22 @@ export function useMutationCustomHook(
 /**
  * [확인 팝업의 uesMutation 커스텀 훅]
  *
- * 팝업 message, url, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
+ * 팝업 message, 요청 전 유효성 검사 콜백, url, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
  * @param parameters
  * @returns
  */
 export function useMutationCustomByConfirmPopupHook(
   parameters: TypeUseMutationCustomHookByConfirmPopupHookParams
 ) {
-  const { message, url, successCb, cancelBtnCb, failCb, errorPopupBtnCb } =
-    parameters;
+  const {
+    message,
+    url,
+    checkValidatioinCb,
+    successCb,
+    cancelBtnCb,
+    failCb,
+    errorPopupBtnCb,
+  } = parameters;
   const {
     useSetMessage,
     useSetIsLoading,
@@ -96,6 +105,7 @@ export function useMutationCustomByConfirmPopupHook(
     mutationFn: (params) => postAPI(url, params, failCb),
     onMutate: () => {
       useSetIsLoading(true);
+      checkValidatioinCb?.();
     },
     onSuccess: (response) => {
       console.debug(response);
