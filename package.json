@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build:dev": "env .env.dev next build",
+    "build:dev": "env $(cat .env.dev | xargs) next build",
     "build": "next build",
-    "start:dev": "env -e .env.dev next start",
+    "start:dev": "env $(cat .env.dev | xargs) next start",
     "start": "next start",
     "lint": "next lint"
   },
