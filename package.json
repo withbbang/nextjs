@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build:dev": "env $(cat .env.dev | xargs) next build",
+    "build:prod": "env $(cat .env.prod | xargs) next build",
     "build": "next build",
-    "start:dev": "env $(cat .env.dev | xargs) next start",
     "start": "next start",
     "lint": "next lint"
   },
