@@ -10,7 +10,7 @@ const nextConfig = {
     prependData: `@import "styles/_variables.scss";`, // prependData 옵션 추가
   },
   i18n,
-  ...(process.env.NODE_ENV === "production" ? prod : dev),
+  ...(process.env.NEXT_PUBLIC_ENV === "prod" ? prod : dev),
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
