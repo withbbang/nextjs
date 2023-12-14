@@ -8,3 +8,13 @@
         ex) https://nextjs.org/docs/pages/api-reference/functions/get-server-side-props#notfound
     - getServerSideProps에서 컴포넌트의 props로 에러 내용을 전달 후 처리한다.
         ex) https://tesseractjh.tistory.com/269
+
+4 cloud 상에서 배포시 무조건 build 우선 해줘야한다. (package.json에 있는 환경변수에 따른 build로 해주면 좋음)
+  1) npm run build:dev -> 정적파일 생성, 각각의 환경변수 적용, server 데이터 미리 박아 줌
+  2) npm start 및 무중단으로 배포로 서버 시작, 나는 pm2로 관리
+
+  ex.1) $pm2 list
+  ex.2) $pm2 stop [process name]
+  ex.3) $pm2 delete [process name]
+  ex.4) npm run build:[env]
+  ex.5) pm2 start npm --name "[process name]" -- start
