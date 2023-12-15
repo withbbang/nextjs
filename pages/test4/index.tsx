@@ -16,7 +16,8 @@ export default function Test4({ data }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const data = await getAPI("http://localhost:4000/api/example");
+  const SERVER_DOMAIN = process.env.NEXT_PUBLICK_SERVER_DOMAIN;
+  const data = await getAPI(`${SERVER_DOMAIN}/api/example`);
 
   return {
     props: { data },
