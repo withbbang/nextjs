@@ -1,11 +1,12 @@
 /*********************************************************************************
  *********************************** 커스텀 훅 정의 *********************************
  ********************************************************************************/
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useCommonStore } from "@/stores/common";
 import { getAPI, postAPI } from "./apis";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
+  TypeKeyValueForm,
   TypeUseMstaionCustomHookParams,
   TypeUseMutationCustomHookByConfirmPopupHookParams,
   TypeUseQueryCustomHookParams,
@@ -141,4 +142,33 @@ export function useMutationCustomByConfirmPopupHook(
   }, []);
 
   return { data, useSetActiveConfirmPopup };
+}
+
+/**
+ * input, textarea, select tag 커스텀 훅
+ * @param {TypeKeyValueForm} keyValueForm key - value 객체
+ * @returns
+ */
+export function useChangeHook(keyValueForm: TypeKeyValueForm) {
+  const [form, setForm] = useState<TypeKeyValueForm>(keyValueForm);
+
+  // input, textarea, select onChange 콜백 함수
+  const useChange = useCallback(
+    (
+      e:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLTextAreaElement>
+        | React.ChangeEvent<HTMLSelectElement>
+    ) => {
+      const { name, value } = e.currentTarget;
+
+      setForm((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    },
+    [setForm]
+  );
+
+  return { form, setForm, useChange };
 }

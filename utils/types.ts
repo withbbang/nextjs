@@ -124,3 +124,7 @@ export interface TypeThrowCustomErrorInAPI {
   failCb?: () => any;
   errorPopupBtnCb?: () => any;
 }
+
+export interface TypeKeyValueForm {
+  [key: string]: number | string;
+}
