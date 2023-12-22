@@ -31,7 +31,7 @@ export interface TypeUseQueryCustomHookParams {
 export interface TypeUseMstaionCustomHookParams {
   url: string;
   checkValidatioinCb?: () => any;
-  successCb?: () => any;
+  successCb?: (response?: any) => any;
   failCb?: () => any;
   errorPopupBtnCb?: () => any;
 }
@@ -51,7 +51,7 @@ export interface TypeUseMutationCustomHookByConfirmPopupHookParams {
   message: string;
   url: string;
   checkValidatioinCb?: () => any;
-  successCb?: () => any;
+  successCb?: (response?: any) => any;
   cancelBtnCb?: () => any;
   failCb?: () => any;
   errorPopupBtnCb?: () => any;

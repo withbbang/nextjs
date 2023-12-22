@@ -55,7 +55,7 @@ export function useMutationCustomHook(
     },
     onSuccess: (response) => {
       console.debug(response);
-      successCb?.();
+      successCb?.(response);
     },
     onError: (error: any) => {
       useSetMessage(error.message);
@@ -110,7 +110,7 @@ export function useMutationCustomByConfirmPopupHook(
     },
     onSuccess: (response) => {
       console.debug(response);
-      successCb?.();
+      successCb?.(response);
     },
     onError: (error: any) => {
       useSetMessage(error.message);
