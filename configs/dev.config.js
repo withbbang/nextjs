@@ -8,10 +8,6 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/test/bad",
-        destination: "http://localhost:4000/test/good",
-      },
-      {
         source: "/api/:path*",
         destination: "http://localhost:4000/api/:path*",
       },

@@ -181,4 +181,42 @@ function deleteAPI(
   });
 }
 
-export { getAPI, postAPI, putAPI, deleteAPI };
+/**
+ * 이미지 업로드용 API
+ * @param {string} url 요청 URL
+ * @param {any} payload 요청 DATA
+ * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
+ * @returns {Promise<any>}
+ */
+function imageAPI(url: string, payload: any, failCb?: () => any) {
+  console.debug("parameters: ", payload.get("image"));
+  return new Promise((resolve, reject) => {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: payload,
+    })
+      .then((response) => {
+        if (response.status < 400) {
+          return response.json();
+        }
+
+        return handleThrowErrorInAPI({ status: response.status });
+      })
+      .then((result) => {
+        console.debug("result: ", result);
+        const { code, message } = result;
+
+        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message });
+        resolve(result);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
+}
+
+export { getAPI, postAPI, putAPI, deleteAPI, imageAPI };
