@@ -17,6 +17,7 @@ function getAPI(
   errorPopupBtnCb?: () => any
 ): Promise<any> {
   return new Promise((resolve, reject) => {
+    console.debug("URL: ", url);
     fetch(url, {
       method: "GET",
       //   mode: "no-cors",
@@ -65,6 +66,7 @@ function getAPI(
  * @returns {Promise<any>}
  */
 function postAPI(url: string, payload: any, failCb?: () => any): Promise<any> {
+  console.debug("URL: ", url);
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -105,6 +107,7 @@ function postAPI(url: string, payload: any, failCb?: () => any): Promise<any> {
  * @returns {Promise<any>}
  */
 function putAPI(url: string, payload: any, failCb?: () => any): Promise<any> {
+  console.debug("URL: ", url);
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -149,6 +152,7 @@ function deleteAPI(
   payload: any,
   failCb?: () => any
 ): Promise<any> {
+  console.debug("URL: ", url);
   console.debug("parameters: ", payload);
   return new Promise((resolve, reject) => {
     fetch(url, {
@@ -189,6 +193,7 @@ function deleteAPI(
  * @returns {Promise<any>}
  */
 function imageAPI(url: string, payload: any, failCb?: () => any) {
+  console.debug("URL: ", url);
   console.debug("parameters: ", payload.get("image"));
   return new Promise((resolve, reject) => {
     fetch(url, {
