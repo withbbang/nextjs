@@ -83,13 +83,15 @@ function postAPI(url: string, payload: any, failCb?: () => any): Promise<any> {
           return response.json();
         }
 
-        return handleThrowErrorInAPI({ status: response.status });
+        return handleThrowErrorInAPI({ status: response.status, failCb });
       })
       .then((result) => {
         console.debug("result: ", result);
         const { code, message } = result;
 
-        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message });
+        if (code !== "0000")
+          handleThrowCustomErrorInAPI({ code, message, failCb });
+
         resolve(result);
       })
       .catch((error) => {
@@ -124,13 +126,15 @@ function putAPI(url: string, payload: any, failCb?: () => any): Promise<any> {
           return response.json();
         }
 
-        return handleThrowErrorInAPI({ status: response.status });
+        return handleThrowErrorInAPI({ status: response.status, failCb });
       })
       .then((result) => {
         console.debug("result: ", result);
         const { code, message } = result;
 
-        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message });
+        if (code !== "0000")
+          handleThrowCustomErrorInAPI({ code, message, failCb });
+
         resolve(result);
       })
       .catch((error) => {
@@ -169,13 +173,15 @@ function deleteAPI(
           return response.json();
         }
 
-        return handleThrowErrorInAPI({ status: response.status });
+        return handleThrowErrorInAPI({ status: response.status, failCb });
       })
       .then((result) => {
         console.debug("result: ", result);
         const { code, message } = result;
 
-        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message });
+        if (code !== "0000")
+          handleThrowCustomErrorInAPI({ code, message, failCb });
+
         resolve(result);
       })
       .catch((error) => {
@@ -192,7 +198,7 @@ function deleteAPI(
  * @param {Function | undefined} failCb API 실패시 바로 실행하는 콜백
  * @returns {Promise<any>}
  */
-function imageAPI(url: string, payload: any, failCb?: () => any) {
+function imageAPI(url: string, payload: any, failCb?: () => any): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload.get("image"));
   return new Promise((resolve, reject) => {
@@ -208,13 +214,15 @@ function imageAPI(url: string, payload: any, failCb?: () => any) {
           return response.json();
         }
 
-        return handleThrowErrorInAPI({ status: response.status });
+        return handleThrowErrorInAPI({ status: response.status, failCb });
       })
       .then((result) => {
         console.debug("result: ", result);
         const { code, message } = result;
 
-        if (code !== "0000") handleThrowCustomErrorInAPI({ code, message });
+        if (code !== "0000")
+          handleThrowCustomErrorInAPI({ code, message, failCb });
+
         resolve(result);
       })
       .catch((error) => {
