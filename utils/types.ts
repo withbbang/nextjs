@@ -114,7 +114,7 @@ export interface TypeThrowErrorInAPI {
  * [Status Code는 정상이지만 서버 로직에 의한 에러 타입]
  *
  * @type {string} code: 결과 코드
- * @type {string | undefined} message: 메세지
+ * @type {string} message: 메세지
  * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
  * @type {Function | undefined} errorPopupBtnCb: 에러팝업 버튼 콜백
  */
