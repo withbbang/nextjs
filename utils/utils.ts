@@ -27,7 +27,7 @@ export function handleThrowErrorInAPI({
   failCb,
   errorPopupBtnCb,
 }: TypeThrowErrorInAPI) {
-  failCb?.();
+  failCb?.(`${status}`, message);
   switch (status) {
     case 400:
       throw new BadRequestError(
@@ -83,7 +83,7 @@ export function handleThrowCustomErrorInAPI({
   failCb,
   errorPopupBtnCb,
 }: TypeThrowCustomErrorInAPI) {
-  failCb?.();
+  failCb?.(code, message);
   // TODO: 코드에 따라 switch case 분기 필요
   throw new CustomAPIError(message, errorPopupBtnCb);
 }

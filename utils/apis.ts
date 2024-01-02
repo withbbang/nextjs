@@ -13,8 +13,8 @@ import { handleThrowCustomErrorInAPI, handleThrowErrorInAPI } from "./utils";
  */
 function getAPI(
   url: string,
-  failCb?: () => any,
-  errorPopupBtnCb?: () => any
+  failCb?: (code?: string, message?: string) => any,
+  errorPopupBtnCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   return new Promise((resolve, reject) => {
     console.debug("URL: ", url);
@@ -69,8 +69,8 @@ function getAPI(
 function postAPI(
   url: string,
   payload: any,
-  failCb?: () => any,
-  errorPopupBtnCb?: () => any
+  failCb?: (code?: string, message?: string) => any,
+  errorPopupBtnCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload);
@@ -127,8 +127,8 @@ function postAPI(
 function putAPI(
   url: string,
   payload: any,
-  failCb?: () => any,
-  errorPopupBtnCb?: () => any
+  failCb?: (code?: string, message?: string) => any,
+  errorPopupBtnCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload);
@@ -185,8 +185,8 @@ function putAPI(
 function deleteAPI(
   url: string,
   payload: any,
-  failCb?: () => any,
-  errorPopupBtnCb?: () => any
+  failCb?: (code?: string, message?: string) => any,
+  errorPopupBtnCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload);
@@ -243,8 +243,8 @@ function deleteAPI(
 function imageAPI(
   url: string,
   payload: any,
-  failCb?: () => any,
-  errorPopupBtnCb?: () => any
+  failCb?: (code?: string, message?: string) => any,
+  errorPopupBtnCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload.get("image"));
