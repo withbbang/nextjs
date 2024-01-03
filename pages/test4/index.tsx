@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     redirect: {
-      permanent: false,
+      permanent: false, // permanent 설명: https://velog.io/@himprover/Nextjs-Redirect-%EC%98%B5%EC%85%98%EC%97%90-Permanent%EB%8A%94-%EB%AD%90%EC%A7%80
       destination: "/test2",
     },
     // props: { data },
