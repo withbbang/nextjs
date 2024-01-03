@@ -56,19 +56,19 @@ export function useMutationCustomHook(
     onSuccess: (response) => {
       console.debug(response);
       successCb?.(response);
+      useSetIsLoading(false);
     },
     onError: (error: any) => {
       useSetMessage(error.message);
       useSetIsErrorPopupActive(true);
+      useSetIsLoading(false);
       useSetErrorBtn(() => {
         useSetIsErrorPopupActive(false);
         useSetMessage("");
         errorPopupBtnCb?.();
       });
     },
-    onSettled: () => {
-      useSetIsLoading(false);
-    },
+    onSettled: () => {},
   });
 
   return { data, mutate };
@@ -111,19 +111,19 @@ export function useMutationCustomByConfirmPopupHook(
     onSuccess: (response) => {
       console.debug(response);
       successCb?.(response);
+      useSetIsLoading(false);
     },
     onError: (error: any) => {
       useSetMessage(error.message);
       useSetIsErrorPopupActive(true);
+      useSetIsLoading(false);
       useSetErrorBtn(() => {
         useSetIsErrorPopupActive(false);
         useSetMessage("");
         errorPopupBtnCb?.();
       });
     },
-    onSettled: () => {
-      useSetIsLoading(false);
-    },
+    onSettled: () => {},
   });
 
   const useSetActiveConfirmPopup = useCallback((params: any) => {
