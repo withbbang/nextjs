@@ -62,6 +62,7 @@ export interface TypeUseMutationCustomHookByConfirmPopupHookParams {
  */
 export interface TypeCommon {
   message: string;
+  errorPopupMessage: string;
   isLoading: boolean;
   isConfirmPopupActive: boolean;
   isErrorPopupActive: boolean;
@@ -71,6 +72,7 @@ export interface TypeCommon {
   useSetIsConfirmPopupActive: (isConfirmPopupActive: boolean) => void;
   useSetIsErrorPopupActive: (isErrorPopupActive: boolean) => void;
   useSetMessage: (message: string) => void;
+  useSetErrorPopupMessage: (errorPopupMessage: string) => void;
   useSetIsLoading: (isLoading: boolean) => void;
   useSetConfirmBtn: (cb?: () => void) => void;
   useSetCancelBtn: (cb?: () => void) => void;

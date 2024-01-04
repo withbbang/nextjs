@@ -7,10 +7,13 @@ import { StoreApi, UseBoundStore, create } from "zustand";
 export const useCommonStore: UseBoundStore<StoreApi<TypeCommon>> = create(
   (set) => ({
     message: "",
+    errorPopupMessage: "",
     isLoading: false,
     isConfirmPopupActive: false,
     isErrorPopupActive: false,
     useSetMessage: (message: string) => set({ message }),
+    useSetErrorPopupMessage: (errorPopupMessage: string) =>
+      set({ errorPopupMessage }),
     useSetIsLoading: (isLoading: boolean) => set({ isLoading }),
     useSetIsConfirmPopupActive: (isConfirmPopupActive: boolean) =>
       set({ isConfirmPopupActive }),

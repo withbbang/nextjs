@@ -42,29 +42,28 @@ export function useMutationCustomHook(
     parameters;
   const {
     useSetIsLoading,
-    useSetMessage,
+    useSetErrorPopupMessage,
     useSetIsErrorPopupActive,
     useSetErrorBtn,
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: (params: any) => postAPI(url, params, failCb),
+    mutationFn: (params: any) => postAPI(url, params, failCb, errorPopupBtnCb),
     onMutate: () => {
       useSetIsLoading(true);
       checkValidatioinCb?.();
     },
     onSuccess: (response) => {
-      console.debug(response);
       successCb?.(response);
       useSetIsLoading(false);
     },
     onError: (error: any) => {
-      useSetMessage(error.message);
+      useSetErrorPopupMessage(error.message);
       useSetIsErrorPopupActive(true);
       useSetIsLoading(false);
       useSetErrorBtn(() => {
         useSetIsErrorPopupActive(false);
-        useSetMessage("");
+        useSetErrorPopupMessage("");
         errorPopupBtnCb?.();
       });
     },
@@ -94,6 +93,7 @@ export function useMutationCustomByConfirmPopupHook(
   } = parameters;
   const {
     useSetMessage,
+    useSetErrorPopupMessage,
     useSetIsLoading,
     useSetIsConfirmPopupActive,
     useSetIsErrorPopupActive,
@@ -103,23 +103,24 @@ export function useMutationCustomByConfirmPopupHook(
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: (params) => postAPI(url, params, failCb),
+    mutationFn: (params) => postAPI(url, params, failCb, errorPopupBtnCb),
     onMutate: () => {
       useSetIsLoading(true);
       checkValidatioinCb?.();
     },
     onSuccess: (response) => {
-      console.debug(response);
       successCb?.(response);
+      useSetMessage("");
+      useSetIsConfirmPopupActive(false);
       useSetIsLoading(false);
     },
     onError: (error: any) => {
-      useSetMessage(error.message);
+      useSetErrorPopupMessage(error.message);
       useSetIsErrorPopupActive(true);
       useSetIsLoading(false);
       useSetErrorBtn(() => {
         useSetIsErrorPopupActive(false);
-        useSetMessage("");
+        useSetErrorPopupMessage("");
         errorPopupBtnCb?.();
       });
     },
@@ -131,8 +132,6 @@ export function useMutationCustomByConfirmPopupHook(
     useSetIsConfirmPopupActive(true);
     useSetConfirmBtn(() => {
       mutate(params);
-      useSetMessage("");
-      useSetIsConfirmPopupActive(false);
     });
     useSetCancelBtn(() => {
       cancelBtnCb?.();
