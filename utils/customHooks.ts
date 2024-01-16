@@ -7,7 +7,7 @@ import { getAPI, postAPI } from "./apis";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   TypeKeyValueForm,
-  TypeUseMstaionCustomHookParams,
+  TypeUseMutationCustomHookParams,
   TypeUseMutationCustomHookByConfirmPopupHookParams,
   TypeUseQueryCustomHookParams,
 } from "./types";
@@ -31,24 +31,30 @@ export function useQueryCustomHook(
 /**
  * [uesMutation 커스텀 훅]
  *
- * url, 요청 전 유효성 검사 콜백, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
- * @param {TypeUseMstaionCustomHookParams} parameters
+ * url, body data, 요청 전 유효성 검사 콜백, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
+ * @param {TypeUseMutationCustomHookParams} parameters
  * @returns
  */
 export function useMutationCustomHook(
-  parameters: TypeUseMstaionCustomHookParams
+  parameters: TypeUseMutationCustomHookParams
 ) {
-  const { url, checkValidatioinCb, successCb, failCb, errorPopupBtnCb } =
-    parameters;
+  const {
+    url,
+    params,
+    checkValidatioinCb,
+    successCb,
+    failCb,
+    errorPopupBtnCb,
+  } = parameters;
   const {
     useSetIsLoading,
     useSetErrorPopupMessage,
     useSetIsErrorPopupActive,
-    useSetErrorBtn,
+    useSetErrorBtnCb,
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: (params: any) => postAPI(url, params, failCb, errorPopupBtnCb),
+    mutationFn: () => postAPI(url, params, failCb, errorPopupBtnCb),
     onMutate: () => {
       useSetIsLoading(true);
       checkValidatioinCb?.();
@@ -58,12 +64,13 @@ export function useMutationCustomHook(
       useSetIsLoading(false);
     },
     onError: (error: any) => {
+      useSetIsLoading(false);
       useSetErrorPopupMessage(error.message);
       useSetIsErrorPopupActive(true);
-      useSetIsLoading(false);
-      useSetErrorBtn(() => {
+      useSetErrorBtnCb(() => {
         useSetIsErrorPopupActive(false);
         useSetErrorPopupMessage("");
+        useSetErrorBtnCb();
         errorPopupBtnCb?.();
       });
     },
@@ -75,7 +82,7 @@ export function useMutationCustomHook(
 /**
  * [확인 팝업의 uesMutation 커스텀 훅]
  *
- * 팝업 message, 요청 전 유효성 검사 콜백, url, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
+ * 팝업 message, url, body data, 요청 전 유효성 검사 콜백, API 성공시 실행하는 콜백, API 실패시 바로 실행하는 콜백, 에러팝업 버튼 콜백을 담고 있는 객체
  * @param parameters
  * @returns
  */
@@ -85,6 +92,7 @@ export function useMutationCustomByConfirmPopupHook(
   const {
     message,
     url,
+    params,
     checkValidatioinCb,
     successCb,
     cancelBtnCb,
@@ -97,13 +105,13 @@ export function useMutationCustomByConfirmPopupHook(
     useSetIsLoading,
     useSetIsConfirmPopupActive,
     useSetIsErrorPopupActive,
-    useSetConfirmBtn,
-    useSetCancelBtn,
-    useSetErrorBtn,
+    useSetConfirmBtnCb,
+    useSetCancelBtnCb,
+    useSetErrorBtnCb,
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: (params) => postAPI(url, params, failCb, errorPopupBtnCb),
+    mutationFn: () => postAPI(url, params, failCb, errorPopupBtnCb),
     onMutate: () => {
       useSetIsLoading(true);
       checkValidatioinCb?.();
@@ -112,30 +120,33 @@ export function useMutationCustomByConfirmPopupHook(
       successCb?.(response);
       useSetMessage("");
       useSetIsConfirmPopupActive(false);
+      useSetConfirmBtnCb();
       useSetIsLoading(false);
     },
     onError: (error: any) => {
+      useSetIsLoading(false);
       useSetErrorPopupMessage(error.message);
       useSetIsErrorPopupActive(true);
-      useSetIsLoading(false);
-      useSetErrorBtn(() => {
+      useSetErrorBtnCb(() => {
         useSetIsErrorPopupActive(false);
         useSetErrorPopupMessage("");
+        useSetErrorBtnCb();
         errorPopupBtnCb?.();
       });
     },
     onSettled: () => {},
   });
 
-  const useSetActiveConfirmPopup = useCallback((params: any) => {
+  const useSetActiveConfirmPopup = useCallback(() => {
     useSetMessage(message);
     useSetIsConfirmPopupActive(true);
-    useSetConfirmBtn(() => {
-      mutate(params);
+    useSetConfirmBtnCb(() => {
+      mutate();
     });
-    useSetCancelBtn(() => {
+    useSetCancelBtnCb(() => {
       cancelBtnCb?.();
       useSetMessage("");
+      useSetCancelBtnCb();
       useSetIsConfirmPopupActive(false);
     });
   }, []);

@@ -13,13 +13,14 @@ export default function Test2() {
     useMutationCustomByConfirmPopupHook({
       message: "Confirm Popup Test",
       url: "/api/post",
+      params: { key: "value" },
       successCb: () => console.log("called handleConfirmBtn"),
       cancelBtnCb: () => console.log("called handleCancelBtn"),
       failCb: () => console.log("error test"),
     });
 
   const handleClick = () => {
-    useSetActiveConfirmPopup({ key: "value" });
+    useSetActiveConfirmPopup();
   };
 
   return (

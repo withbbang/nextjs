@@ -16,8 +16,11 @@ import ConfirmPopup from "@/components/ConfirmPopup";
 import ErrorPopup from "@/components/ErrorPopup";
 
 function App({ Component, pageProps }: AppProps) {
-  const { useSetMessage, useSetIsErrorPopupActive, useSetErrorBtn } =
-    useCommonStore();
+  const {
+    useSetErrorPopupMessage,
+    useSetIsErrorPopupActive,
+    useSetErrorBtnCb,
+  } = useCommonStore();
 
   const mutationCache = new MutationCache({
     onError: (error, _variables, _context, mutation) => {
@@ -29,11 +32,12 @@ function App({ Component, pageProps }: AppProps) {
 
   const queryCache = new QueryCache({
     onError: (error: any) => {
-      useSetMessage(error.message);
+      useSetErrorPopupMessage(error.message);
       useSetIsErrorPopupActive(true);
-      useSetErrorBtn(() => {
+      useSetErrorBtnCb(() => {
         useSetIsErrorPopupActive(false);
-        useSetMessage("");
+        useSetErrorPopupMessage("");
+        useSetErrorBtnCb();
         error?.errorPopupBtnCb?.();
       });
     },

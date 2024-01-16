@@ -3,7 +3,7 @@ import { useCommonStore } from "@/stores/common";
 import styles from "./ErrorPopup.module.scss";
 
 function ErrorPopup(): JSX.Element {
-  const { errorPopupMessage, isErrorPopupActive, useErrorBtn } =
+  const { errorPopupMessage, isErrorPopupActive, errorBtnCb } =
     useCommonStore();
 
   return (
@@ -17,7 +17,7 @@ function ErrorPopup(): JSX.Element {
       <div className={styles.modalBody}>
         <span>{errorPopupMessage}</span>
         <div>
-          <button onClick={useErrorBtn}>OK</button>
+          <button onClick={errorBtnCb}>OK</button>
         </div>
       </div>
     </div>

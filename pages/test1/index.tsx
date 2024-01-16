@@ -21,8 +21,6 @@ export default function Test1() {
     <>
       <Title title={"Test1"} />
       <h1 className={styles.h1}>{t("h1")}</h1>
-      <h1 className={styles.h1}>{process.env.NEXT_PUBLIC_ENV}</h1>
-      <h1 className={styles.h1}>{query && query.key}</h1>
     </>
   );
 }

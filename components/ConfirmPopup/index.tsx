@@ -3,7 +3,7 @@ import { useCommonStore } from "@/stores/common";
 import styles from "./ConfirmPopup.module.scss";
 
 function ConfirmPopup(): JSX.Element {
-  const { message, isConfirmPopupActive, useConfirmBtn, useCancelBtn } =
+  const { message, isConfirmPopupActive, confirmBtnCb, cancelBtnCb } =
     useCommonStore();
 
   return (
@@ -17,8 +17,8 @@ function ConfirmPopup(): JSX.Element {
       <div className={styles.modalBody}>
         <span>{message}</span>
         <div>
-          <button onClick={useCancelBtn}>Cancel</button>
-          <button onClick={useConfirmBtn}>OK</button>
+          <button onClick={cancelBtnCb}>Cancel</button>
+          <button onClick={confirmBtnCb}>OK</button>
         </div>
       </div>
     </div>

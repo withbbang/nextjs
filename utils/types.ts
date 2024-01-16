@@ -23,13 +23,15 @@ export interface TypeUseQueryCustomHookParams {
  * [useMutationCustomHook 훅의 파라미터 타입]
  *
  * @type {string} url: api url
+ * @type {any} params: body data
  * @type {Function | undefined} checkValidatioinCb: 요청 전 유효성 검사 콜백
  * @type {Function | undefined} successCb: API 성공시 실행하는 콜백
  * @type {Function | undefined} failCb: API 실패시 바로 실행하는 콜백
  * @type {Function | undefined} errorPopupBtnCb: 에러팝업 버튼 콜백
  */
-export interface TypeUseMstaionCustomHookParams {
+export interface TypeUseMutationCustomHookParams {
   url: string;
+  params?: any;
   checkValidatioinCb?: () => any;
   successCb?: (response?: any) => any;
   failCb?: () => any;
@@ -41,6 +43,7 @@ export interface TypeUseMstaionCustomHookParams {
  *
  * @type {string} message: 팝업 message
  * @type {string} url: api url
+ * @type {any} params: body data
  * @type {Function | undefined} checkValidatioinCb: 요청 전 유효성 검사 콜백
  * @type {Function | undefined} successCb: API 성공시 실행하는 콜백
  * @type {Function | undefined} cancelBtnCb: 팝업 취소 버튼 콜백
@@ -50,6 +53,7 @@ export interface TypeUseMstaionCustomHookParams {
 export interface TypeUseMutationCustomHookByConfirmPopupHookParams {
   message: string;
   url: string;
+  params?: any;
   checkValidatioinCb?: () => any;
   successCb?: (response?: any) => any;
   cancelBtnCb?: () => any;
@@ -66,17 +70,17 @@ export interface TypeCommon {
   isLoading: boolean;
   isConfirmPopupActive: boolean;
   isErrorPopupActive: boolean;
-  useConfirmBtn?: () => void;
-  useCancelBtn?: () => void;
-  useErrorBtn?: () => void;
-  useSetIsConfirmPopupActive: (isConfirmPopupActive: boolean) => void;
-  useSetIsErrorPopupActive: (isErrorPopupActive: boolean) => void;
+  confirmBtnCb?: () => void;
+  cancelBtnCb?: () => void;
+  errorBtnCb?: () => void;
   useSetMessage: (message: string) => void;
   useSetErrorPopupMessage: (errorPopupMessage: string) => void;
   useSetIsLoading: (isLoading: boolean) => void;
-  useSetConfirmBtn: (cb?: () => void) => void;
-  useSetCancelBtn: (cb?: () => void) => void;
-  useSetErrorBtn: (cb?: () => void) => void;
+  useSetIsConfirmPopupActive: (isConfirmPopupActive: boolean) => void;
+  useSetIsErrorPopupActive: (isErrorPopupActive: boolean) => void;
+  useSetConfirmBtnCb: (confirmBtnCb?: () => void) => void;
+  useSetCancelBtnCb: (cancelBtnCb?: () => void) => void;
+  useSetErrorBtnCb: (errorBtnCb?: () => void) => void;
 }
 
 export interface TypeSVG {

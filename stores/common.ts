@@ -11,6 +11,9 @@ export const useCommonStore: UseBoundStore<StoreApi<TypeCommon>> = create(
     isLoading: false,
     isConfirmPopupActive: false,
     isErrorPopupActive: false,
+    confirmBtnCb: undefined,
+    cancelBtnCb: undefined,
+    errorBtnCb: undefined,
     useSetMessage: (message: string) => set({ message }),
     useSetErrorPopupMessage: (errorPopupMessage: string) =>
       set({ errorPopupMessage }),
@@ -19,9 +22,9 @@ export const useCommonStore: UseBoundStore<StoreApi<TypeCommon>> = create(
       set({ isConfirmPopupActive }),
     useSetIsErrorPopupActive: (isErrorPopupActive: boolean) =>
       set({ isErrorPopupActive }),
-    useSetConfirmBtn: (useConfirmBtn?: () => void) => set({ useConfirmBtn }),
-    useSetCancelBtn: (useCancelBtn?: () => void) => set({ useCancelBtn }),
-    useSetErrorBtn: (useErrorBtn?: () => void) => set({ useErrorBtn }),
+    useSetConfirmBtnCb: (confirmBtnCb?: () => void) => set({ confirmBtnCb }),
+    useSetCancelBtnCb: (cancelBtnCb?: () => void) => set({ cancelBtnCb }),
+    useSetErrorBtnCb: (errorBtnCb?: () => void) => set({ errorBtnCb }),
   })
 );
 
