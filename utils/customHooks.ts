@@ -121,6 +121,7 @@ export function useMutationCustomByConfirmPopupHook(
       useSetMessage("");
       useSetIsConfirmPopupActive(false);
       useSetConfirmBtnCb();
+      useSetCancelBtnCb();
       useSetIsLoading(false);
     },
     onError: (error: any) => {
@@ -143,11 +144,13 @@ export function useMutationCustomByConfirmPopupHook(
     useSetConfirmBtnCb(() => {
       mutate();
     });
+
     useSetCancelBtnCb(() => {
       cancelBtnCb?.();
       useSetMessage("");
-      useSetCancelBtnCb();
       useSetIsConfirmPopupActive(false);
+      useSetConfirmBtnCb();
+      useSetCancelBtnCb();
     });
   }, []);
 
