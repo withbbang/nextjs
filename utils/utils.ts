@@ -30,44 +30,23 @@ export function handleThrowErrorInAPI({
   failCb?.(`${status}`, message);
   switch (status) {
     case 400:
-      throw new BadRequestError(
-        message || "Bad Request Error",
-        errorPopupBtnCb
-      );
+      throw new BadRequestError(message, errorPopupBtnCb);
     case 401:
-      throw new UnauthorizedError(
-        message || "Unauthorized Error",
-        errorPopupBtnCb
-      );
+      throw new UnauthorizedError(message, errorPopupBtnCb);
     case 403:
-      throw new ForbiddenError(message || "Forbidden Error", errorPopupBtnCb);
+      throw new ForbiddenError(message, errorPopupBtnCb);
     case 404:
-      throw new NotFoundError(message || "Not Found Error", errorPopupBtnCb);
+      throw new NotFoundError(message, errorPopupBtnCb);
     case 405:
-      throw new MethodNotAllowedError(
-        message || "Method Not Allowed Error",
-        errorPopupBtnCb
-      );
+      throw new MethodNotAllowedError(message, errorPopupBtnCb);
     case 408:
-      throw new RequestTimeoutError(
-        message || "Request Timeout Error",
-        errorPopupBtnCb
-      );
+      throw new RequestTimeoutError(message, errorPopupBtnCb);
     case 500:
-      throw new InternalServerErrorError(
-        message || "Internal Server Error",
-        errorPopupBtnCb
-      );
+      throw new InternalServerErrorError(message, errorPopupBtnCb);
     case 502:
-      throw new BadGatewayError(
-        message || "Bad Gateway Error",
-        errorPopupBtnCb
-      );
+      throw new BadGatewayError(message, errorPopupBtnCb);
     case 503:
-      throw new ServiceUnavailableError(
-        message || "Service Unavailable Error",
-        errorPopupBtnCb
-      );
+      throw new ServiceUnavailableError(message, errorPopupBtnCb);
   }
 }
 

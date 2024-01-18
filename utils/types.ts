@@ -112,8 +112,8 @@ export interface TypeAPIError extends Error {
 export interface TypeThrowErrorInAPI {
   status: number;
   message?: string;
-  failCb?: (code?: string, messaeg?: string) => any;
-  errorPopupBtnCb?: (code?: string, messaeg?: string) => any;
+  failCb?: (code?: string, message?: string) => any;
+  errorPopupBtnCb?: (code?: string, message?: string) => any;
 }
 
 /**
@@ -127,8 +127,8 @@ export interface TypeThrowErrorInAPI {
 export interface TypeThrowCustomErrorInAPI {
   code: string;
   message: string;
-  failCb?: (code?: string, messaeg?: string) => any;
-  errorPopupBtnCb?: (code?: string, messaeg?: string) => any;
+  failCb?: (code?: string, message?: string) => any;
+  errorPopupBtnCb?: (code?: string, message?: string) => any;
 }
 
 export interface TypeKeyValueForm {
