@@ -37,8 +37,8 @@ function App({ Component, pageProps }: AppProps) {
       useSetErrorBtnCb(() => {
         useSetIsErrorPopupActive(false);
         useSetErrorPopupMessage("");
+        error?.errorPopupBtnCb?.(error.code);
         useSetErrorBtnCb();
-        error?.errorPopupBtnCb?.();
       });
     },
   });
