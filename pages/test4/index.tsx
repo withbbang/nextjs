@@ -16,8 +16,9 @@ export default function Test4({ data }: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const SERVER_DOMAIN = process.env.NEXT_PUBLICK_SERVER_DOMAIN;
-  // const data = await getAPI(`${SERVER_DOMAIN}/api/example`);
+  // const data = await getAPI(
+  //   `${process.env.NEXT_PUBLICK_SERVER_DOMAIN}/api/example`
+  // );
 
   return {
     redirect: {

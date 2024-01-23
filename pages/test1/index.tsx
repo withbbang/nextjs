@@ -26,7 +26,6 @@ export default function Test1() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const SERVER_DOMAIN = process.env.NEXT_PUBLICK_SERVER_DOMAIN;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["test1"], queryTest1ServerSide);
 
