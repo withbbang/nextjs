@@ -69,8 +69,7 @@ function getAPI(
 function postAPI(
   url: string,
   payload: any,
-  failCb?: (code?: string, message?: string) => any,
-  errorPopupBtnCb?: (code?: string, message?: string) => any
+  failCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload);
@@ -92,7 +91,6 @@ function postAPI(
         return handleThrowErrorInAPI({
           status: response.status,
           failCb,
-          errorPopupBtnCb,
         });
       })
       .then((result) => {
@@ -104,7 +102,6 @@ function postAPI(
             code,
             message,
             failCb,
-            errorPopupBtnCb,
           });
 
         resolve(result);
@@ -127,8 +124,7 @@ function postAPI(
 function putAPI(
   url: string,
   payload: any,
-  failCb?: (code?: string, message?: string) => any,
-  errorPopupBtnCb?: (code?: string, message?: string) => any
+  failCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload);
@@ -150,7 +146,6 @@ function putAPI(
         return handleThrowErrorInAPI({
           status: response.status,
           failCb,
-          errorPopupBtnCb,
         });
       })
       .then((result) => {
@@ -162,7 +157,6 @@ function putAPI(
             code,
             message,
             failCb,
-            errorPopupBtnCb,
           });
 
         resolve(result);
@@ -185,8 +179,7 @@ function putAPI(
 function deleteAPI(
   url: string,
   payload: any,
-  failCb?: (code?: string, message?: string) => any,
-  errorPopupBtnCb?: (code?: string, message?: string) => any
+  failCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload);
@@ -208,7 +201,6 @@ function deleteAPI(
         return handleThrowErrorInAPI({
           status: response.status,
           failCb,
-          errorPopupBtnCb,
         });
       })
       .then((result) => {
@@ -220,7 +212,6 @@ function deleteAPI(
             code,
             message,
             failCb,
-            errorPopupBtnCb,
           });
 
         resolve(result);
@@ -243,8 +234,7 @@ function deleteAPI(
 function imageAPI(
   url: string,
   payload: any,
-  failCb?: (code?: string, message?: string) => any,
-  errorPopupBtnCb?: (code?: string, message?: string) => any
+  failCb?: (code?: string, message?: string) => any
 ): Promise<any> {
   console.debug("URL: ", url);
   console.debug("parameters: ", payload.get("image"));
@@ -264,7 +254,6 @@ function imageAPI(
         return handleThrowErrorInAPI({
           status: response.status,
           failCb,
-          errorPopupBtnCb,
         });
       })
       .then((result) => {
@@ -276,7 +265,6 @@ function imageAPI(
             code,
             message,
             failCb,
-            errorPopupBtnCb,
           });
 
         resolve(result);

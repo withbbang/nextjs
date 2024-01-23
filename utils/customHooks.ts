@@ -54,7 +54,7 @@ export function useMutationCustomHook(
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: () => postAPI(url, params, failCb, errorPopupBtnCb),
+    mutationFn: () => postAPI(url, params, failCb),
     onMutate: () => {
       useSetIsLoading(true);
       checkValidatioinCb?.();
@@ -70,8 +70,8 @@ export function useMutationCustomHook(
       useSetErrorBtnCb(() => {
         useSetIsErrorPopupActive(false);
         useSetErrorPopupMessage("");
-        useSetErrorBtnCb();
         errorPopupBtnCb?.();
+        useSetErrorBtnCb();
       });
     },
     onSettled: () => {},
@@ -111,7 +111,7 @@ export function useMutationCustomByConfirmPopupHook(
   } = useCommonStore();
 
   const { data, mutate } = useMutation({
-    mutationFn: () => postAPI(url, params, failCb, errorPopupBtnCb),
+    mutationFn: () => postAPI(url, params, failCb),
     onMutate: () => {
       useSetIsLoading(true);
       checkValidatioinCb?.();
@@ -131,8 +131,8 @@ export function useMutationCustomByConfirmPopupHook(
       useSetErrorBtnCb(() => {
         useSetIsErrorPopupActive(false);
         useSetErrorPopupMessage("");
-        useSetErrorBtnCb();
         errorPopupBtnCb?.();
+        useSetErrorBtnCb();
       });
     },
     onSettled: () => {},
